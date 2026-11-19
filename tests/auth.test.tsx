@@ -55,7 +55,7 @@ describe('authentication', () => {
     expect(await screen.findByText('Your guild is registered. Log in to receive the keys.')).toBeInTheDocument()
 
     await completeLogin(user, email)
-    expect(await screen.findByRole('heading', { name: 'The tavern keeper is waiting' })).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { name: 'A warm welcome' })).toBeInTheDocument()
   })
 
   it('attaches a bearer token, retrieves the profile, and enters the Guild Hall on a normal login', async () => {

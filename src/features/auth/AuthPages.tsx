@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import type { FormEvent, ReactNode } from 'react'
-import { Button, Card, Field, Input, Panel } from '../../components/ui'
+import { Button, Card, Field, Input } from '../../components/ui'
 import { apiErrorMessage, validationErrors } from './authApi'
 import { useAuth } from '../../app/providers/AuthStateProvider'
 
@@ -64,10 +64,6 @@ export function RegisterPage() {
   }
 
   return <AuthShell title="Claim your guild hall" subtitle="Choose a name and gather your first band of whiskered heroes."><form className="grid gap-4" onSubmit={handleSubmit} noValidate><Field label="Guildmaster name" error={errors.name}><Input name="name" autoComplete="name" required /></Field><Field label="Email" error={errors.email}><Input name="email" type="email" autoComplete="email" required /></Field><Field label="Password" hint="Use at least the security requirements set by the guild." error={errors.password}><Input name="password" type="password" autoComplete="new-password" required /></Field><Field label="Confirm password" error={errors.password_confirmation}><Input name="password_confirmation" type="password" autoComplete="new-password" required /></Field>{message && <p role="alert" className="rounded-lg bg-dusty-pink/40 p-3 font-semibold text-cocoa-plum">{message}</p>}<Button type="submit" loading={isSubmitting}>Register the guild</Button></form><p className="mt-5 text-center text-cocoa-plum/80">Already a guildmaster? <Link className="font-bold text-cocoa-plum underline" to="/login">Log in</Link>.</p></AuthShell>
-}
-
-export function OnboardingPlaceholderPage() {
-  return <Panel className="max-w-3xl"><span className="text-3xl" aria-hidden="true">🐾</span><h1 className="pixel-heading mt-4 text-base text-cocoa-plum sm:text-lg">The tavern keeper is waiting</h1><p className="mt-5 text-lg text-cocoa-plum/80">Your new guild is ready. The full welcome tour arrives in Phase 4.</p><Link className="mt-6 inline-block font-bold text-cocoa-plum underline" to="/guild">Explore the Guild Hall</Link></Panel>
 }
 
 export function LogoutAction() {
