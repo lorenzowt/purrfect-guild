@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Badge } from '../../components/ui'
+import { HeroPortrait } from '../heroes/HeroPortrait'
 import type { Mission } from './missionsApi'
 import { formatMissionDate, formatMissionStatus, missionStatusVariant } from './missionPresentation'
 
@@ -24,5 +25,5 @@ export function MissionCard({ mission }: { mission: Mission }) {
 
 export function HeroNames({ heroes }: { heroes: Mission['heroes'] }) {
   if (heroes.length === 0) return <p className="mt-2 text-sm text-cocoa-plum/75">No adventurers are recorded for this mission.</p>
-  return <ul className="mt-2 flex flex-wrap gap-2" aria-label="Assigned adventurers">{heroes.map((hero) => <li key={hero.id} className="mission-hero-name">🐾 {hero.name}</li>)}</ul>
+  return <ul className="mt-2 flex flex-wrap gap-2" aria-label="Assigned adventurers">{heroes.map((hero) => <li key={hero.id} className="mission-hero-name"><HeroPortrait hero={hero} size="xs" />{hero.name}</li>)}</ul>
 }

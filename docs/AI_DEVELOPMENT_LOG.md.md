@@ -498,3 +498,47 @@ I learned that backend data structures and frontend presentation have different 
 **My main takeaway was that providing more data should not automatically result in showing more data.** Clear instructions and critical review are necessary to prevent AI-generated changes from introducing unnecessary interface elements or deviating from the intended design.
 
 This also reinforced the value of making architectural corrections in the appropriate layer rather than relying on frontend workarounds.
+
+## Interaction 12 — Hero Portraits and Mission Journal Redesign
+
+**Phase:** Development — Visual Integration and Refinement  
+**AI Model:** OpenAI Codex  
+**Purpose:** Integrate custom hero portraits and improve the Mission Journal's visual identity and consistency with the rest of Purrfect Guild.
+
+### 1. Initial Prompts
+
+After completing the core gameplay features, I decided to integrate the hero portraits I had prepared.
+
+I instructed Codex to use these assets consistently throughout the application, assigning portraits to heroes based on their ID and class.
+
+During my review, I also noticed that the Mission Journal looked relatively plain compared to the highly stylized Quest Board.
+
+I asked Codex to redesign the Mission Journal using the visual guidelines and references established in the project's documentation.
+
+### 2. AI-Generated Implementation
+
+Codex integrated the hero portraits into the relevant application interfaces, allowing adventurers to maintain a consistent visual identity.
+
+It also generated a redesigned Mission Journal that better reflected the cozy fantasy aesthetic, introducing a more distinctive appearance and improving its visual consistency with the Quest Board.
+
+### 3. My Intervention and Corrections
+
+The first redesign of the Mission Journal was already a significant improvement, but I felt it still lacked some of the personality that I wanted for Purrfect Guild.
+
+I asked Codex to incorporate more cat-related visual details and decorative elements to reinforce the game's theme.
+
+Through further adjustments, the Mission Journal became more closely aligned with my original vision.
+
+I continued reviewing the results and providing feedback until I was satisfied with the final design.
+
+### 4. Outcome and Reflection
+
+This interaction demonstrated how AI can assist not only with implementing functionality but also with exploring and refining visual design.
+
+The initial redesign provided a useful foundation, but achieving the desired result required additional feedback and creative direction.
+
+I also observed that the project documentation was valuable as a reference for redesigning an existing feature without starting from scratch.
+
+**My main takeaway was that AI-generated designs should be treated as iterations rather than final results.** By comparing different parts of the application, identifying visual inconsistencies, and providing increasingly specific feedback, I was able to guide the AI toward a more cohesive and personalized game experience.
+
+This experience reinforced my role in evaluating the generated work and making the final creative decisions, rather than simply accepting the first implementation.
