@@ -334,3 +334,65 @@ I learned that evaluating AI-generated code involves more than checking whether 
 **My main takeaway was that separating functional implementation from final visual refinement can make AI-assisted development more efficient, while preserving control over the final product.**
 
 The identified improvements will be revisited after the remaining gameplay features have been implemented.
+
+## Interaction 08 — Hero Roster and Management
+
+**Phase:** Development — Phase 5  
+**AI Model:** OpenAI Codex  
+**Purpose:** Implement hero management and improve the user experience through critical evaluation of AI-generated code.
+
+### 1. Initial Prompts
+
+I divided Phase 5 into two independent branches:
+
+- **Phase 5A — Hero Roster:** Implement hero cards, character portraits, individual details, and API integration.
+- **Phase 5B — Hero Management:** Implement recruitment, editing, healing, and hero removal through the Laravel API.
+
+I instructed Codex to follow the existing architecture, design system, and OpenAPI specifications.
+
+### 2. AI-Generated Implementation
+
+Codex implemented the hero management functionality, including a recruitment modal.
+
+However, after successfully creating a hero, the modal remained open, allowing users to submit the form repeatedly.
+
+Although the feature was functional, this behavior did not provide the user experience I intended.
+
+### 3. My Intervention and Corrections
+
+After testing the recruitment flow, I identified the problem and instructed Codex:
+
+> After creating a hero, the modal needs to close. Show a success message that fades out instead of leaving the modal open.
+
+Codex modified the recruitment dialog, hero roster page, and CSS to implement the requested behavior.
+
+After successful recruitment:
+
+- The modal closes automatically.
+- A success notification appears on the roster.
+- The notification fades out and disappears after four seconds.
+- The user can no longer accidentally resubmit the same form.
+
+Codex also updated the corresponding automated test.
+
+### 4. Verification
+
+After the correction, Codex reported:
+
+- **43 passing automated tests.**
+- Successful TypeScript checks.
+- Successful production build.
+
+### 5. Outcome and Reflection
+
+This interaction demonstrated the importance of reviewing AI-generated functionality from the user's perspective.
+
+The initial implementation technically allowed successful hero creation, but its interaction design was incomplete.
+
+By identifying the issue and providing specific feedback, I was able to guide Codex toward a more intuitive result without rewriting the feature myself.
+
+I also implemented the Modal and Form interaction guidelines DESIGN_SYSTEM.md and AGENTS.md, in order to avoid similar mistakes in the future.
+
+**My main takeaway was that functional correctness and good user experience are not the same thing.** AI-generated code still requires human evaluation to ensure that interactions behave as intended.
+
+This also reinforced my decision to develop the application incrementally, correcting important usability problems while postponing nonessential visual refinements until the complete game is implemented.
