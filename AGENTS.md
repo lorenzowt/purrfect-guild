@@ -54,6 +54,7 @@ Do not introduce additional libraries without explaining why they are necessary.
 - Do not persist authentication tokens in browser storage.
 - Clear authentication state and user-specific query caches appropriately.
 - Respect user and administrator permissions.
+- Administrators have an exclusive Guild Master's Office experience. Administrative resource detail pages must remain within the admin layout and expose all applicable backend-authorized management operations, reusing existing components and logic whenever possible. Never redirect administrators into regular player screens.
 - Do not modify the Laravel backend without discussing the requirement first.
 
 MSW mocks are permitted for automated testing.

@@ -773,3 +773,26 @@ These features should not complicate the initial implementation unnecessarily.
 - `openapi.yaml` — Existing Laravel API specification.
     
 - `AI_DEVELOPMENT_LOG.md` — AI interactions and learning reflections.
+
+## 18. Administrator Experience and Resource Management
+
+Purrfect Guild has two separate application experiences:
+
+**Player (`user`)**
+
+- Accesses the regular Guild Hall and gameplay features.
+- Manages personal resources according to Laravel authorization rules.
+
+**Administrator (`admin`)**
+
+- Is redirected to the Guild Master's Office after login.
+- Cannot access regular player-facing routes.
+- Uses dedicated administrative listing and detail routes.
+- Can inspect and perform all documented administrative operations on resources belonging to any user, subject to Laravel authorization.
+- Has access to administrative management controls for users, quests, heroes, and missions where supported by the API.
+
+Administrative and player interfaces may reuse components, forms, and mutation hooks, but must maintain separate routing, layouts, and navigation.
+
+Frontend route guards control the user experience. Laravel remains responsible for enforcing authorization on every API operation.
+
+The frontend must not invent permissions or endpoints that are absent from the API contract.

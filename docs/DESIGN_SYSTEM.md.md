@@ -478,3 +478,22 @@ This document establishes the initial visual direction.
 Specific spacing scales, component dimensions, responsive breakpoints, animation durations, and implementation details will be refined during development.
 
 Any significant changes should be documented and applied consistently across the application.
+
+## 11. Guild Master's Office — Administrative UI
+
+The administrative interface uses the same cozy fantasy pixel-art design language as Purrfect Guild, but with a distinct visual identity.
+
+- Use muted stone, warm gray, desaturated parchment, and restrained accent colors.
+- Reserve stronger red accents for destructive actions, errors, and important warnings.
+- Use consistent local SVG icons rather than platform-dependent emojis.
+- Center administrative content containers and tables within the available workspace.
+- Keep table contents appropriately aligned and readable.
+- Preserve the administrative layout and visual theme across listing and detail pages.
+- Present management controls clearly on resource detail pages.
+- Distinguish primary, secondary, and destructive actions visually.
+- Require confirmation before destructive operations.
+- Close dialogs only after successful operations and display temporary success feedback.
+- Keep forms and dialogs open when validation or server errors occur.
+- Maintain responsive layouts and accessible keyboard interactions.
+
+Administrative detail pages should feel like part of the Guild Master's Office, not like regular player pages.
