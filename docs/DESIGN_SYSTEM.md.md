@@ -287,6 +287,18 @@ Use small pixel-art elements such as:
 
 Decorations should enhance the interface without distracting from important information.
 
+### Modal and Form Interaction Guidelines
+
+- After a successful form submission, close the modal automatically.
+- Display a brief success notification outside the modal, so the user receives confirmation without interrupting their workflow.
+- Success notifications should fade out and disappear automatically after approximately 4 seconds.
+- Prevent duplicate submissions while a request is being processed.
+- If validation or server errors occur, keep the modal open and display the relevant errors so the user can correct them.
+- Do not close modals before the backend confirms that the operation succeeded.
+- Confirmation dialogs for destructive actions should close after successful completion.
+- Apply these rules consistently to hero management, quests, missions, and other relevant interactions.
+- Exceptions are allowed when a workflow explicitly requires the modal to remain open, such as a multi-step form.
+
 ## 6. Responsive Design and Navigation
 
 The application uses a hybrid navigation approach.
