@@ -6,7 +6,10 @@ export function useMissionResolution(missionId: string) {
 
   function synchronize(mission: Mission) {
     queryClient.setQueryData(missionQueryKeys.detail(String(mission.id)), mission)
+    queryClient.setQueryData(['admin', 'missions', 'detail', String(mission.id)], mission)
     void queryClient.invalidateQueries({ queryKey: ['missions'] })
+    void queryClient.invalidateQueries({ queryKey: ['admin', 'missions'] })
+    void queryClient.invalidateQueries({ queryKey: ['admin', 'heroes'] })
     void queryClient.invalidateQueries({ queryKey: ['heroes', 'roster'] })
     void queryClient.invalidateQueries({ queryKey: ['heroes', 'detail'] })
     void queryClient.invalidateQueries({ queryKey: ['guild', 'heroes'] })

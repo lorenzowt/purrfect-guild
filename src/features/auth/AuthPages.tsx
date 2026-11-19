@@ -24,7 +24,7 @@ export function LoginPage() {
     try {
       const result = await login({ email: String(form.get('email')), password: String(form.get('password')) })
       const onboardingEmail = (location.state as { onboardingEmail?: string } | null)?.onboardingEmail
-      const redirectTo = onboardingEmail?.toLowerCase() === String(form.get('email')).toLowerCase() ? '/onboarding' : result.redirectTo
+      const redirectTo = result.redirectTo !== '/admin' && onboardingEmail?.toLowerCase() === String(form.get('email')).toLowerCase() ? '/onboarding' : result.redirectTo
       navigate(redirectTo, { replace: true })
     } catch (error) {
       const fieldErrors = validationErrors(error)

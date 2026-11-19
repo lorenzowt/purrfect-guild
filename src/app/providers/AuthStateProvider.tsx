@@ -15,9 +15,9 @@ export type AuthState =
 const guestAuthState: AuthState = { status: 'guest' }
 
 type AuthContextValue = AuthState & {
-  postLoginRedirect?: '/guild' | '/onboarding'
+  postLoginRedirect?: '/guild' | '/onboarding' | '/admin'
   register: (input: RegisterInput) => Promise<void>
-  login: (input: LoginInput) => Promise<{ redirectTo: '/guild' | '/onboarding' }>
+  login: (input: LoginInput) => Promise<{ redirectTo: '/guild' | '/onboarding' | '/admin' }>
   logout: () => Promise<{ serverRevoked: boolean }>
 }
 
@@ -35,7 +35,7 @@ export function AuthStateProvider({ state: injectedState, children }: AuthStateP
   const queryClient = useQueryClient()
   const [authState, setAuthState] = useState<AuthState>(injectedState ?? guestAuthState)
   const onboardingEmailRef = useRef<string | null>(null)
-  const [postLoginRedirect, setPostLoginRedirect] = useState<'/guild' | '/onboarding' | undefined>()
+  const [postLoginRedirect, setPostLoginRedirect] = useState<'/guild' | '/onboarding' | '/admin' | undefined>()
   const isTestDouble = injectedState !== undefined
 
   const resetSession = useCallback(() => {
@@ -56,15 +56,15 @@ export function AuthStateProvider({ state: injectedState, children }: AuthStateP
     onboardingEmailRef.current = user.email.toLowerCase()
   }, [])
 
-  const login = useCallback(async (input: LoginInput): Promise<{ redirectTo: '/guild' | '/onboarding' }> => {
+  const login = useCallback(async (input: LoginInput): Promise<{ redirectTo: '/guild' | '/onboarding' | '/admin' }> => {
     try {
       const token = await loginRequest(input)
       setAccessToken(token.access_token)
       const user = await getCurrentUser()
       queryClient.setQueryData(['auth', 'user'], user)
-      const isNewlyRegistered = onboardingEmailRef.current === user.email.toLowerCase()
+      const isNewlyRegistered = user.role === 'user' && onboardingEmailRef.current === user.email.toLowerCase()
       onboardingEmailRef.current = null
-      const redirectTo = isNewlyRegistered ? '/onboarding' : '/guild'
+      const redirectTo = user.role === 'admin' ? '/admin' : isNewlyRegistered ? '/onboarding' : '/guild'
       setPostLoginRedirect(redirectTo)
       setAuthState({ status: 'authenticated', user: { role: user.role as UserRole } })
       return { redirectTo }
@@ -93,7 +93,7 @@ export function AuthStateProvider({ state: injectedState, children }: AuthStateP
         ...(injectedState ?? guestAuthState),
         postLoginRedirect: undefined,
         register: async () => undefined,
-        login: async () => ({ redirectTo: '/guild' as const }),
+        login: async () => ({ redirectTo: injectedState?.status === 'authenticated' && injectedState.user.role === 'admin' ? '/admin' as const : '/guild' as const }),
         logout: async () => ({ serverRevoked: true }),
       }
     }

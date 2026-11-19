@@ -19,7 +19,9 @@ export function useHeroMutations(heroId?: string) {
 
   function refreshHero(hero: Hero) {
     queryClient.setQueryData(heroQueryKeys.detail(String(hero.id)), hero)
+    queryClient.setQueryData(['admin', 'heroes', 'detail', String(hero.id)], hero)
     void queryClient.invalidateQueries({ queryKey: ['heroes', 'roster'] })
+    void queryClient.invalidateQueries({ queryKey: ['admin', 'heroes'] })
     void queryClient.invalidateQueries({ queryKey: ['guild', 'heroes'] })
   }
 

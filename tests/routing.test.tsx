@@ -36,6 +36,11 @@ describe('application routing', () => {
     expect(await screen.findByRole('heading', { name: 'Guild Hall' })).toBeInTheDocument()
   })
 
+  it('redirects authenticated administrators away from guest-only routes to the office', async () => {
+    renderRoute('/login', { status: 'authenticated', user: { role: 'admin' } })
+    expect(await screen.findByRole('heading', { name: 'Guild Master’s Office' })).toBeInTheDocument()
+  })
+
   it('navigates between authenticated player pages', async () => {
     const user = userEvent.setup()
     renderRoute('/guild', { status: 'authenticated', user: { role: 'user' } })
@@ -49,9 +54,14 @@ describe('application routing', () => {
     expect(screen.getByRole('heading', { name: 'Guild doors locked' })).toBeInTheDocument()
   })
 
-  it('allows administrators to access administrator routes', () => {
+  it('allows administrators to access administrator routes', async () => {
     renderRoute('/admin/users', { status: 'authenticated', user: { role: 'admin' } })
-    expect(screen.getByRole('heading', { name: 'User Management' })).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { name: 'Guild members' })).toBeInTheDocument()
+  })
+
+  it.each(['/guild', '/heroes', '/quests', '/missions', '/profile', '/onboarding'])('redirects administrators from %s to the office', async (path) => {
+    renderRoute(path, { status: 'authenticated', user: { role: 'admin' } })
+    expect(await screen.findByRole('heading', { name: 'Guild Master’s Office' })).toBeInTheDocument()
   })
 
   it('shows a not-found page for unknown paths', () => {

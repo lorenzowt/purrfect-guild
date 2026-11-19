@@ -16,6 +16,7 @@ export const handlers = [
       message: 'User retrieved successfully.',
     }),
   ),
+  http.get(`${apiUrl}/users`, () => HttpResponse.json(paginated([], 0, 'Users retrieved successfully.'))),
   http.get(`${apiUrl}/heroes`, () => HttpResponse.json(paginated([], 0, 'Heroes retrieved successfully.'))),
   http.get(`${apiUrl}/quests`, () => HttpResponse.json(paginated([], 0, 'Quests retrieved successfully.'))),
   http.get(`${apiUrl}/missions`, () => HttpResponse.json(paginated([], 0, 'Missions retrieved successfully.'))),

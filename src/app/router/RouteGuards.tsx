@@ -12,11 +12,23 @@ export function RequireAuth() {
   return <Outlet />
 }
 
+/** Player routes are intentionally unavailable to administrators. */
+export function RequirePlayer() {
+  const authState = useAuthState()
+  const location = useLocation()
+
+  if (authState.status === 'loading') return <RouteLoading />
+  if (authState.status === 'guest') return <Navigate to="/login" replace state={{ from: location }} />
+  if (authState.user.role === 'admin') return <Navigate to="/admin" replace />
+
+  return <Outlet />
+}
+
 export function RequireGuest() {
   const authState = useAuthState()
 
   if (authState.status === 'loading') return <RouteLoading />
-  if (authState.status === 'authenticated') return <Navigate to={authState.postLoginRedirect ?? '/guild'} replace />
+  if (authState.status === 'authenticated') return <Navigate to={authState.user.role === 'admin' ? '/admin' : authState.postLoginRedirect ?? '/guild'} replace />
 
   return <Outlet />
 }
