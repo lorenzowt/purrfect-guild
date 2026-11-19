@@ -70,6 +70,7 @@ Follow `DESIGN_SYSTEM.md`.
 - Playful animations for important gameplay actions.
 - Accessible navigation and reduced-motion support.
 - Follow the modal and form interaction guidelines in `docs/DESIGN_SYSTEM.md`. Successful submissions should close their modal and show temporary feedback unless the documented workflow explicitly requires otherwise.
+- When API responses gain new fields, do not automatically expose them in the UI. Use new data only for its intended purpose and preserve existing presentation requirements unless explicitly instructed otherwise.
 
 Reuse design tokens and existing components instead of introducing inconsistent styling.
 

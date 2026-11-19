@@ -439,3 +439,62 @@ It also reinforced the importance of reviewing both functionality and presentati
 **My main takeaway was that consistent project documentation and reusable components reduce the need for repeated corrections, allowing AI-assisted development to become more efficient as the project progresses.**
 
 I will continue postponing broader visual refinements until the remaining gameplay features are implemented, while correcting smaller inconsistencies when necessary.
+
+## Interaction 11 — API Synchronization and Mission Data Refinement
+
+**Phase:** Development — Phase 7 Finalization  
+**AI Model:** OpenAI Codex  
+**Purpose:** Improve mission ordering, expand API response data, and synchronize the frontend with backend changes.
+
+### 1. Initial Problem and Decisions
+
+After implementing Phase 7, I identified two limitations in the Laravel API:
+
+- Missions were not guaranteed to appear newest-first across paginated results because sorting was performed in React after pagination.
+- Mission responses did not include the heroes' classes, which would be useful for assigning consistent character portraits throughout the application.
+
+I decided to correct these issues directly in the Laravel backend rather than introducing additional frontend workarounds.
+
+### 2. Backend Changes
+
+I modified the Laravel API to:
+
+- Sort missions by creation date in descending order before pagination.
+- Include `hero_class` alongside the existing hero information in mission responses.
+
+These changes improved data consistency and provided the frontend with the information needed for future portrait integration.
+
+### 3. AI-Assisted Frontend Updates
+
+I instructed Codex to synchronize the frontend with the updated API.
+
+The requested changes included:
+
+- Updating `openapi.yaml` to reflect the expanded mission response.
+- Regenerating the TypeScript types.
+- Removing unnecessary client-side mission sorting.
+- Reviewing mission-related components to use the updated response structure.
+
+### 4. My Intervention and Corrections
+
+During the implementation, I encountered an issue with how Codex interpreted the additional API field.
+
+Because `hero_class` was now available in mission responses, Codex attempted to display it in more places throughout the interface.
+
+However, **adding information to an API response does not necessarily mean that information should be visible to the player**.
+
+I clarified that the hero class was primarily needed for internal frontend logic, particularly future portrait selection, and should only be displayed where it was already appropriate according to the design.
+
+This required explicitly separating the data available to the application from the information presented in the user interface.
+
+### 5. Outcome and Reflection
+
+The frontend was updated to reflect the improved API contract, and mission ordering could now be handled correctly by Laravel rather than separately on each frontend page.
+
+This interaction highlighted an important limitation of AI-assisted development: AI may interpret newly available data as an opportunity to expand the interface, even when that was not requested.
+
+I learned that backend data structures and frontend presentation have different responsibilities. An API should provide the information needed by the application, while the interface should selectively display what is relevant to the user.
+
+**My main takeaway was that providing more data should not automatically result in showing more data.** Clear instructions and critical review are necessary to prevent AI-generated changes from introducing unnecessary interface elements or deviating from the intended design.
+
+This also reinforced the value of making architectural corrections in the appropriate layer rather than relying on frontend workarounds.
