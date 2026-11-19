@@ -5,7 +5,7 @@ import { RequireAdmin, RequireAuth, RequireGuest } from './RouteGuards'
 import { LoginPage, RegisterPage } from '../../features/auth/AuthPages'
 import { GuildHallPage } from '../../features/guild/GuildHallPage'
 import { OnboardingPage } from '../../features/onboarding/OnboardingPage'
-import { ProfilePlaceholderPage } from '../../features/onboarding/ProfilePlaceholderPage'
+import { ProfilePage } from '../../features/profile/ProfilePage'
 import { HeroDetailPage } from '../../features/heroes/HeroDetailPage'
 import { HeroRosterPage } from '../../features/heroes/HeroRosterPage'
 import { QuestBoardPage } from '../../features/quests/QuestBoardPage'
@@ -41,7 +41,7 @@ export function ApplicationRoutes() {
           <Route path="/quests/:questId/party" element={<PartyBuilderPage />} />
           <Route path="/missions" element={<MissionJournalPage />} />
           <Route path="/missions/:missionId" element={<MissionDetailPage />} />
-          <Route path="/profile" element={<ProfilePlaceholderPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
           <Route path="/onboarding" element={<OnboardingPage />} />
         </Route>
       </Route>

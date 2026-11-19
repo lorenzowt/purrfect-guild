@@ -58,6 +58,7 @@ describe('player onboarding', () => {
 
     guild.unmount()
     renderRoute('/profile')
+    await screen.findByRole('heading', { name: 'My Profile' })
     await user.click(screen.getByRole('link', { name: 'Replay Bramble’s welcome tour' }))
     expect(await screen.findByRole('heading', { name: 'A warm welcome' })).toBeInTheDocument()
   })
