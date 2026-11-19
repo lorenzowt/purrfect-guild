@@ -521,3 +521,20 @@ Any such changes must be documented and reflected in `openapi.yaml`.
 - `ARCHITECTURE.md` — Technical implementation decisions.
     
 - `AI_DEVELOPMENT_LOG.md` — AI interactions and learning reflections.
+
+## 15. Guild Master's Office — Administrative Management Flow
+
+1. An administrator logs in and is redirected directly to the Guild Master's Office.
+2. The administrator selects Guild Members, Quest Ledger, Hero Oversight, or Mission Archive.
+3. The selected section displays its administrative resource listing.
+4. The administrator selects a resource to open its detail page.
+5. The detail page remains inside the administrative layout and provides the management actions supported by Laravel.
+6. The administrator can inspect, create, edit, heal, delete, cancel, or perform other operations where applicable and explicitly authorized by the API.
+7. Destructive actions require confirmation.
+8. Successful operations update the relevant data and display temporary feedback.
+9. Failed operations preserve the current context and explain the error.
+10. Returning from the detail page leads back to the corresponding administrative listing.
+
+Administrators do not use the regular player interface.
+
+Administrative screens must not offer actions unsupported by the backend or inappropriate for the resource's current state.

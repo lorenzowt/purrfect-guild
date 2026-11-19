@@ -75,6 +75,19 @@ describe('authentication', () => {
     expect(authorization).toBe('Bearer passport-token')
   })
 
+  it('routes an administrator directly to the Guild Master’s Office', async () => {
+    const user = userEvent.setup()
+    server.use(
+      http.post(`${apiUrl}/login`, () => HttpResponse.json({ access_token: 'admin-token', token_type: 'Bearer' })),
+      http.get(`${apiUrl}/users/me`, () => HttpResponse.json(profile('office@example.test', 'admin'))),
+    )
+    renderAuthRoute('/login')
+
+    await completeLogin(user, 'office@example.test')
+    expect(await screen.findByRole('heading', { name: 'Guild Master’s Office' })).toBeInTheDocument()
+    expect(screen.queryByLabelText('Player navigation')).not.toBeInTheDocument()
+  })
+
   it('explains invalid credentials without authenticating', async () => {
     const user = userEvent.setup()
     server.use(http.post(`${apiUrl}/login`, () => HttpResponse.json({ message: 'Invalid credentials.' }, { status: 401 })))
@@ -101,6 +114,20 @@ describe('authentication', () => {
     await user.click(await screen.findByRole('button', { name: 'Log out' }))
     expect(await screen.findByRole('heading', { name: 'A Guild of Whiskers & Wonder' })).toBeInTheDocument()
     expect(authorization).toBe('Bearer logout-token')
+  })
+
+  it('logs an administrator out from the office', async () => {
+    const user = userEvent.setup()
+    server.use(
+      http.post(`${apiUrl}/login`, () => HttpResponse.json({ access_token: 'admin-logout-token', token_type: 'Bearer' })),
+      http.get(`${apiUrl}/users/me`, () => HttpResponse.json(profile('office@example.test', 'admin'))),
+      http.post(`${apiUrl}/logout`, () => HttpResponse.json({ message: 'Logged out.' })),
+    )
+    renderAuthRoute('/login')
+
+    await completeLogin(user, 'office@example.test')
+    await user.click(await screen.findByRole('button', { name: 'Log out' }))
+    expect(await screen.findByRole('heading', { name: 'A Guild of Whiskers & Wonder' })).toBeInTheDocument()
   })
 
   it('returns to the guest login route after a refresh because no token is persisted', () => {
