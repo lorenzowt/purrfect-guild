@@ -1,4 +1,6 @@
 import { NavLink, Outlet } from 'react-router-dom'
+import { useAuthState } from '../providers/AuthStateProvider'
+import { LogoutAction } from '../../features/auth/AuthPages'
 
 const playerLinks = [
   { to: '/guild', label: 'Guild Hall' },
@@ -36,9 +38,11 @@ export function PublicLayout() {
 }
 
 export function PlayerLayout() {
-  return <div className="min-h-screen bg-vanilla-cream md:grid md:grid-cols-[15rem_1fr]"><aside className="border-b-2 border-soft-caramel bg-soft-caramel/35 px-5 py-4 md:border-r-2 md:border-b-0 md:px-6 md:py-8"><Brand /><Navigation label="Player navigation" links={playerLinks} /></aside><main className="min-w-0 px-5 py-8 pb-24 sm:px-8 md:pb-8"><Outlet /></main></div>
+  const authState = useAuthState()
+  const links = authState.status === 'authenticated' && authState.user.role === 'admin' ? [...playerLinks, { to: '/admin', label: 'Guild Office' }] : playerLinks
+  return <div className="min-h-screen bg-vanilla-cream md:grid md:grid-cols-[15rem_1fr]"><aside className="border-b-2 border-soft-caramel bg-soft-caramel/35 px-5 py-4 md:border-r-2 md:border-b-0 md:px-6 md:py-8"><Brand /><Navigation label="Player navigation" links={links} /><div className="mt-3"><LogoutAction /></div></aside><main className="min-w-0 px-5 py-8 pb-24 sm:px-8 md:pb-8"><Outlet /></main></div>
 }
 
 export function AdminLayout() {
-  return <div className="min-h-screen bg-vanilla-cream md:grid md:grid-cols-[15rem_1fr]"><aside className="border-b-2 border-soft-lavender bg-soft-lavender/35 px-5 py-4 md:border-r-2 md:border-b-0 md:px-6 md:py-8"><Brand /><p className="mt-4 text-sm font-bold text-cocoa-plum/80">Guild Master’s Office</p><Navigation label="Administrator navigation" links={adminLinks} /></aside><main className="min-w-0 px-5 py-8 sm:px-8"><Outlet /></main></div>
+  return <div className="min-h-screen bg-vanilla-cream md:grid md:grid-cols-[15rem_1fr]"><aside className="border-b-2 border-soft-lavender bg-soft-lavender/35 px-5 py-4 md:border-r-2 md:border-b-0 md:px-6 md:py-8"><Brand /><p className="mt-4 text-sm font-bold text-cocoa-plum/80">Guild Master’s Office</p><Navigation label="Administrator navigation" links={adminLinks} /><div className="mt-3"><LogoutAction /></div></aside><main className="min-w-0 px-5 py-8 sm:px-8"><Outlet /></main></div>
 }

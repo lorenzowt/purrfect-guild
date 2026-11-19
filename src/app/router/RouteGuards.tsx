@@ -16,7 +16,7 @@ export function RequireGuest() {
   const authState = useAuthState()
 
   if (authState.status === 'loading') return <RouteLoading />
-  if (authState.status === 'authenticated') return <Navigate to="/guild" replace />
+  if (authState.status === 'authenticated') return <Navigate to={authState.postLoginRedirect ?? '/guild'} replace />
 
   return <Outlet />
 }
