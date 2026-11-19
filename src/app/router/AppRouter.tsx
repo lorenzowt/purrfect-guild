@@ -6,6 +6,8 @@ import { LoginPage, RegisterPage } from '../../features/auth/AuthPages'
 import { GuildHallPage } from '../../features/guild/GuildHallPage'
 import { OnboardingPage } from '../../features/onboarding/OnboardingPage'
 import { ProfilePlaceholderPage } from '../../features/onboarding/ProfilePlaceholderPage'
+import { HeroDetailPage } from '../../features/heroes/HeroDetailPage'
+import { HeroRosterPage } from '../../features/heroes/HeroRosterPage'
 
 export function AppRouter() {
   return <BrowserRouter><ApplicationRoutes /></BrowserRouter>
@@ -28,8 +30,8 @@ export function ApplicationRoutes() {
       <Route element={<RequireAuth />}>
         <Route element={<PlayerLayout />}>
           <Route path="/guild" element={<GuildHallPage />} />
-          <Route path="/heroes" element={<PlaceholderPage title="Adventurers’ Corner" description="Your feline adventurers will gather here." />} />
-          <Route path="/heroes/:heroId" element={<PlaceholderPage title="Adventurer details" description="Hero details will appear here." />} />
+          <Route path="/heroes" element={<HeroRosterPage />} />
+          <Route path="/heroes/:heroId" element={<HeroDetailPage />} />
           <Route path="/quests" element={<PlaceholderPage title="Quest Board" description="Available adventures will be pinned here." />} />
           <Route path="/quests/:questId" element={<PlaceholderPage title="Quest details" description="Quest details will appear here." />} />
           <Route path="/quests/:questId/party" element={<PlaceholderPage title="Party Builder" description="Party formation will appear here." />} />
