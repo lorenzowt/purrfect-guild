@@ -289,3 +289,48 @@ This phase helped me understand how React Router, Context, Axios, and TanStack Q
 I also learned the importance of separating frontend authorization checks from backend security enforcement.
 
 A key takeaway was that **passing automated tests with mocked responses does not guarantee successful integration with a real backend**. Live API verification remains an essential next step.
+
+## Interaction 07 — Guild Hall and Player Onboarding
+
+**Phase:** Development — Phase 4  
+**AI Model:** OpenAI Codex  
+**Purpose:** Implement the interactive Guild Hall and the introductory onboarding experience.
+
+### 1. Initial Prompts
+
+I divided Phase 4 into two independent development branches:
+
+- **Phase 4A — Guild Hall:** Create the main tavern interface, interactive navigation, guild overview, and responsive layouts.
+- **Phase 4B — Onboarding:** Implement the retired tavern keeper, introductory dialogue, tutorial navigation, and replay functionality.
+
+I instructed Codex to follow the existing design system, architecture, and user flows while reusing previously developed components.
+
+### 2. AI-Generated Implementation
+
+Codex implemented the Guild Hall as the application's central hub, with interactive navigation and guild information.
+
+It also implemented the onboarding experience, introducing players to the game's mechanics through the retired tavern keeper.
+
+Both features were developed separately to maintain the established Gitflow workflow.
+
+### 3. My Decisions and Evaluation
+
+After reviewing the implementation, I confirmed that the features were functional and that the overall result was satisfactory.
+
+However, I identified some visual and interaction details that do not completely match my original vision.
+
+Rather than immediately requesting changes, I decided to continue implementing the remaining features and revisit these differences during a dedicated refinement phase.
+
+This decision allows me to evaluate the application as a complete experience before making broader design changes.
+
+### 4. Outcome and Reflection
+
+Phase 4 established the main game environment and the player's introduction to Purrfect Guild.
+
+The experience demonstrated that AI can translate detailed specifications into functional interfaces, but the generated result does not always fully reflect the intended design.
+
+I learned that evaluating AI-generated code involves more than checking whether it works. It also requires considering usability, visual consistency, and alignment with the original project goals.
+
+**My main takeaway was that separating functional implementation from final visual refinement can make AI-assisted development more efficient, while preserving control over the final product.**
+
+The identified improvements will be revisited after the remaining gameplay features have been implemented.

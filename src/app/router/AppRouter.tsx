@@ -2,8 +2,10 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { AdminLayout, PlayerLayout, PublicLayout } from './Layouts'
 import { NotFoundPage, PlaceholderPage, WelcomePage } from './Pages'
 import { RequireAdmin, RequireAuth, RequireGuest } from './RouteGuards'
-import { LoginPage, OnboardingPlaceholderPage, RegisterPage } from '../../features/auth/AuthPages'
+import { LoginPage, RegisterPage } from '../../features/auth/AuthPages'
 import { GuildHallPage } from '../../features/guild/GuildHallPage'
+import { OnboardingPage } from '../../features/onboarding/OnboardingPage'
+import { ProfilePlaceholderPage } from '../../features/onboarding/ProfilePlaceholderPage'
 
 export function AppRouter() {
   return <BrowserRouter><ApplicationRoutes /></BrowserRouter>
@@ -33,8 +35,8 @@ export function ApplicationRoutes() {
           <Route path="/quests/:questId/party" element={<PlaceholderPage title="Party Builder" description="Party formation will appear here." />} />
           <Route path="/missions" element={<PlaceholderPage title="Mission Journal" description="Active and past missions will appear here." />} />
           <Route path="/missions/:missionId" element={<PlaceholderPage title="Mission details" description="Mission details will appear here." />} />
-          <Route path="/profile" element={<PlaceholderPage title="My Profile" description="Account settings will appear here." />} />
-          <Route path="/onboarding" element={<OnboardingPlaceholderPage />} />
+          <Route path="/profile" element={<ProfilePlaceholderPage />} />
+          <Route path="/onboarding" element={<OnboardingPage />} />
         </Route>
       </Route>
 
