@@ -3,6 +3,7 @@ import { AdminLayout, PlayerLayout, PublicLayout } from './Layouts'
 import { NotFoundPage, PlaceholderPage, WelcomePage } from './Pages'
 import { RequireAdmin, RequireAuth, RequireGuest } from './RouteGuards'
 import { LoginPage, OnboardingPlaceholderPage, RegisterPage } from '../../features/auth/AuthPages'
+import { GuildHallPage } from '../../features/guild/GuildHallPage'
 
 export function AppRouter() {
   return <BrowserRouter><ApplicationRoutes /></BrowserRouter>
@@ -24,7 +25,7 @@ export function ApplicationRoutes() {
 
       <Route element={<RequireAuth />}>
         <Route element={<PlayerLayout />}>
-          <Route path="/guild" element={<PlaceholderPage title="Guild Hall" description="Your guild overview will appear here." />} />
+          <Route path="/guild" element={<GuildHallPage />} />
           <Route path="/heroes" element={<PlaceholderPage title="Adventurers’ Corner" description="Your feline adventurers will gather here." />} />
           <Route path="/heroes/:heroId" element={<PlaceholderPage title="Adventurer details" description="Hero details will appear here." />} />
           <Route path="/quests" element={<PlaceholderPage title="Quest Board" description="Available adventures will be pinned here." />} />

@@ -52,6 +52,36 @@ button, [role="button"], input, textarea, select { -webkit-tap-highlight-color: 
 
 .pixel-sparkle::before { content: "✦"; }
 
+.tavern-map {
+  position: relative;
+  min-height: 31rem;
+  isolation: isolate;
+  background: linear-gradient(180deg, var(--color-soft-lavender) 0%, #e9d7c7 46%, var(--color-soft-caramel) 46%, #d29467 100%);
+}
+
+.tavern-map__sky { position: absolute; inset: 0 0 54%; background: radial-gradient(circle at 20% 35%, #fff8e9 0 0.35rem, transparent 0.4rem), radial-gradient(circle at 74% 20%, #fff8e9 0 0.25rem, transparent 0.3rem); opacity: .8; }
+.tavern-map__floor { position: absolute; inset: 46% 0 0; background: repeating-linear-gradient(0deg, transparent 0 2.5rem, rgba(91,70,80,.16) 2.55rem 2.7rem), repeating-linear-gradient(90deg, transparent 0 4rem, rgba(91,70,80,.12) 4.05rem 4.2rem); z-index: -1; }
+.tavern-map__sign { position: absolute; top: 1.5rem; left: 50%; width: min(78%, 24rem); transform: translateX(-50%); border: 3px solid var(--color-cocoa-plum); border-radius: .75rem; background: var(--color-vanilla-cream); padding: .7rem 1rem; text-align: center; box-shadow: var(--shadow-pixel-sm); }
+.tavern-map__sign p { margin: .35rem 0 0; font-size: .75rem; font-weight: 700; }
+.tavern-location { position: absolute; z-index: 1; display: grid; min-width: 8.5rem; max-width: 10.5rem; gap: .15rem; border: 3px solid var(--color-cocoa-plum); border-radius: .8rem; background: var(--color-vanilla-cream); padding: .65rem; color: var(--color-cocoa-plum); text-decoration: none; box-shadow: var(--shadow-pixel-sm); transition: transform 150ms ease, box-shadow 150ms ease, background-color 150ms ease; }
+.tavern-location:hover { transform: translate(-2px, -2px); background: #fff9ed; box-shadow: var(--shadow-pixel); }
+.tavern-location__icon { font-size: 1.4rem; line-height: 1; }
+.tavern-location__label { font-weight: 800; line-height: 1.15; }
+.tavern-location__hint { font-size: .75rem; line-height: 1.2; }
+.tavern-location--heroes { top: 30%; left: 7%; background: var(--color-mint-sage); }
+.tavern-location--quests { top: 28%; right: 7%; background: var(--color-dusty-pink); }
+.tavern-location--missions { bottom: 9%; left: 14%; background: var(--color-soft-caramel); }
+.tavern-location--keeper { right: 15%; bottom: 9%; background: var(--color-soft-lavender); }
+.tavern-map__sparkle { position: absolute; z-index: 0; color: var(--color-vanilla-cream); font-size: 1.8rem; text-shadow: 1px 1px 0 var(--color-cocoa-plum); }
+.tavern-map__sparkle--one { top: 21%; left: 38%; }.tavern-map__sparkle--two { right: 38%; bottom: 21%; }
+
+@media (max-width: 38rem) {
+  .tavern-map { min-height: 46rem; }
+  .tavern-location { left: 50%; width: min(84%, 19rem); max-width: none; transform: translateX(-50%); }
+  .tavern-location:hover { transform: translate(-50%, -2px); }
+  .tavern-location--heroes { top: 20%; }.tavern-location--quests { top: 38%; right: auto; }.tavern-location--missions { top: 56%; bottom: auto; }.tavern-location--keeper { top: 74%; right: auto; bottom: auto; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
 }
