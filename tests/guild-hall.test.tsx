@@ -60,15 +60,16 @@ describe('Guild Hall', () => {
     expect(screen.getByText('currently underway')).toBeInTheDocument()
   })
 
-  it('uses native links that support keyboard navigation to a route placeholder', async () => {
+  it('uses native links that support keyboard navigation to the hero roster', async () => {
     const user = userEvent.setup()
     useOverviewHandlers()
     renderGuildHall()
 
     const adventurers = await screen.findByRole('link', { name: /Visit Adventurers’ Corner/i })
+    server.use(http.get(`${apiUrl}/heroes`, () => HttpResponse.json(paginated([], 0))))
     adventurers.focus()
     await user.keyboard('{Enter}')
-    expect(await screen.findByRole('heading', { name: 'Adventurers’ Corner' })).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { name: 'No adventurers yet' })).toBeInTheDocument()
   })
 
   it('shows a loading state while the guild data is being retrieved', () => {

@@ -79,6 +79,15 @@ button, [role="button"], input, textarea, select { -webkit-tap-highlight-color: 
   background: radial-gradient(circle at 50% 34%, var(--color-vanilla-cream) 0 2.1rem, transparent 2.2rem), linear-gradient(145deg, var(--color-soft-lavender), var(--color-mint-sage));
 }
 
+.hero-portrait { position: relative; display: grid; place-items: center; flex: none; overflow: hidden; border: 3px solid var(--color-cocoa-plum); border-radius: .85rem; background: var(--color-soft-caramel); box-shadow: var(--shadow-pixel-sm); }
+.hero-portrait--warrior { background: linear-gradient(145deg, #d9d4ce, var(--color-soft-caramel)); }
+.hero-portrait--mage { background: linear-gradient(145deg, var(--color-soft-lavender), #eee6f8); }
+.hero-portrait--rogue { background: linear-gradient(145deg, var(--color-cocoa-plum), #9b7882); }
+.hero-portrait--cleric { background: linear-gradient(145deg, var(--color-mint-sage), #e5f2e7); }
+.hero-portrait--variant-1 .hero-portrait__cat { transform: translateX(-0.12em) rotate(-4deg); }.hero-portrait--variant-2 .hero-portrait__cat { transform: translateX(0.12em) rotate(4deg); }
+.hero-portrait__cat { position: relative; z-index: 1; filter: drop-shadow(1px 2px 0 rgba(91, 70, 80, .28)); }.hero-portrait__ears { position: absolute; top: 8%; font-size: .36em; font-weight: 900; letter-spacing: -.24em; color: var(--color-cocoa-plum); }.hero-portrait__class { position: absolute; right: 7%; bottom: 6%; display: grid; place-items: center; width: 1.45em; height: 1.45em; border: 2px solid var(--color-cocoa-plum); border-radius: 999px; background: var(--color-vanilla-cream); color: var(--color-cocoa-plum); font-size: .36em; font-weight: 900; }
+.hero-detail-portrait { background: radial-gradient(circle at 50% 42%, var(--color-vanilla-cream) 0 3.5rem, transparent 3.6rem), linear-gradient(145deg, var(--color-soft-lavender), var(--color-soft-caramel)); }
+
 @media (max-width: 38rem) {
   .tavern-map { min-height: 46rem; }
   .tavern-location { left: 50%; width: min(84%, 19rem); max-width: none; transform: translateX(-50%); }
