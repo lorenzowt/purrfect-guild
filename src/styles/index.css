@@ -92,6 +92,15 @@ button, [role="button"], input, textarea, select { -webkit-tap-highlight-color: 
 .recruitment-notice { animation: notice-fade-out 4s ease-in forwards; }
 @keyframes notice-fade-out { 0%, 72% { opacity: 1; } 100% { opacity: 0; transform: translateY(-.25rem); } }
 
+.quest-board { overflow: hidden; border: 3px solid var(--color-cocoa-plum); border-radius: var(--radius-panel); background: repeating-linear-gradient(90deg, rgba(91,70,80,.16) 0 2px, transparent 2px 3.5rem), linear-gradient(135deg, var(--color-cocoa-plum), var(--color-soft-caramel) 48%, var(--color-cocoa-plum)); padding: clamp(1rem, 4vw, 2.5rem); box-shadow: var(--shadow-pixel); }
+.quest-board__header { border-bottom: 3px solid var(--color-cocoa-plum); padding-bottom: 1rem; text-shadow: 1px 1px 0 var(--color-cocoa-plum); }
+.quest-board__notices { display: grid; gap: 1.25rem; margin-top: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); }
+.quest-notice { position: relative; min-height: 19rem; border: 3px solid var(--color-cocoa-plum); border-radius: .45rem; background: linear-gradient(135deg, var(--color-vanilla-cream), var(--color-soft-caramel)); padding: 1.25rem; color: var(--color-cocoa-plum); box-shadow: 3px 4px 0 rgba(63,48,55,.55); transition: transform 150ms ease, box-shadow 150ms ease; }
+.quest-notice::before, .quest-notice::after { position: absolute; top: -.65rem; width: 2.2rem; height: .85rem; background: rgba(232,184,138,.78); content: ""; transform: rotate(-5deg); }.quest-notice::before { left: 1.2rem; }.quest-notice::after { right: 1.2rem; transform: rotate(5deg); }
+.quest-notice:hover { transform: translateY(-.2rem) rotate(-.15deg); box-shadow: var(--shadow-pixel); }
+.quest-board__empty { margin-top: 1.5rem; }
+.quest-action-link { display: inline-flex; min-height: 2.75rem; align-items: center; justify-content: center; border: 2px solid var(--color-cocoa-plum); border-radius: var(--radius-panel); background: var(--color-dusty-pink); padding: 0 1rem; color: var(--color-cocoa-plum-dark); font-weight: 700; text-decoration: none; transition: transform 150ms ease, box-shadow 150ms ease, background-color 150ms ease; }.quest-action-link:hover { transform: translateY(-2px); background: var(--color-soft-caramel); box-shadow: var(--shadow-pixel-sm); }
+
 @media (max-width: 38rem) {
   .tavern-map { min-height: 46rem; }
   .tavern-location { left: 50%; width: min(84%, 19rem); max-width: none; transform: translateX(-50%); }

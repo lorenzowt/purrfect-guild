@@ -41,7 +41,7 @@ describe('application routing', () => {
     renderRoute('/guild', { status: 'authenticated', user: { role: 'user' } })
 
     await user.click(screen.getByRole('link', { name: 'Quest Board' }))
-    expect(screen.getByRole('heading', { name: 'Quest Board' })).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { name: 'Quest Board' })).toBeInTheDocument()
   })
 
   it('shows access denied to non-administrators on administrator routes', () => {
