@@ -42,6 +42,7 @@ describe('Mission Journal', () => {
     expect(screen.getByText('The Moonlit Mice')).toBeInTheDocument()
     expect(screen.getByText(/Biscuit/)).toBeInTheDocument()
     expect(screen.getByText(/Mallow/)).toBeInTheDocument()
+    expect(screen.getByRole('img', { name: 'Biscuit, Warrior portrait' })).toBeInTheDocument()
     expect(screen.queryByText(/Warrior/)).not.toBeInTheDocument()
     expect(screen.queryByText(/Cleric/)).not.toBeInTheDocument()
     expect(screen.getByText('Status: Assigned')).toBeInTheDocument()

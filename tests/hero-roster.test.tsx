@@ -1,12 +1,12 @@
 import { afterEach, describe, expect, it } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
 import { http, HttpResponse } from 'msw'
 import { AppProviders } from '../src/app/providers/AppProviders'
 import { ApplicationRoutes } from '../src/app/router/AppRouter'
 import { clearAccessToken, setAccessToken } from '../src/lib/api/client'
-import { HeroPortrait, portraitVariant } from '../src/features/heroes/HeroPortrait'
+import { HeroPortrait, portraitSource, portraitVariant } from '../src/features/heroes/HeroPortrait'
 import type { Hero } from '../src/features/heroes/heroesApi'
 import { server } from './mocks/server'
 
@@ -48,13 +48,22 @@ describe('Hero Roster', () => {
     expect(screen.getByRole('img', { name: 'Pebble, Mage portrait' })).toBeInTheDocument()
   })
 
-  it('selects the same CSS portrait variation for a hero on every render', () => {
+  it('selects the same local portrait variation for a hero on every render', () => {
     const { rerender } = render(<HeroPortrait hero={heroes[1]} />)
     const portrait = screen.getByRole('img', { name: 'Pebble, Mage portrait' })
     expect(portrait).toHaveClass('hero-portrait--variant-2')
+    expect(portrait).toHaveAttribute('src', portraitSource(heroes[1]))
     expect(portraitVariant(heroes[1])).toBe(2)
     rerender(<HeroPortrait hero={heroes[1]} />)
-    expect(screen.getByRole('img', { name: 'Pebble, Mage portrait' })).toHaveClass('hero-portrait--variant-2')
+    expect(screen.getByRole('img', { name: 'Pebble, Mage portrait' })).toHaveAttribute('src', portraitSource(heroes[1]))
+  })
+
+  it('maps each documented hero class to its own asset collection and falls back if an image cannot load', () => {
+    for (const hero of heroes) expect(portraitSource(hero)).toContain(`/${hero.hero_class}/`)
+
+    render(<HeroPortrait hero={heroes[0]} />)
+    fireEvent.error(screen.getByRole('img', { name: 'Biscuit, Warrior portrait' }))
+    expect(screen.getByTestId('hero-portrait-fallback')).toHaveAccessibleName('Biscuit, Warrior portrait')
   })
 
   it('follows API pagination links without inventing a page parameter', async () => {
