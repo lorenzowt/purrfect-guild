@@ -44,7 +44,7 @@ describe('Hero Roster', () => {
     expect(screen.getByText('Biscuit')).toBeInTheDocument()
     expect(screen.getByText('Warrior')).toBeInTheDocument()
     expect(screen.getAllByText(/Level/)).toHaveLength(4)
-    expect(screen.getByText('On mission')).toBeInTheDocument()
+    expect(screen.getByText('On Mission')).toBeInTheDocument()
     expect(screen.getByRole('img', { name: 'Pebble, Mage portrait' })).toBeInTheDocument()
   })
 

@@ -47,7 +47,7 @@ describe('Party Builder', () => {
     expect(screen.getByText('Difficulty 5/10')).toBeInTheDocument()
     expect(screen.getByText('Boss: The Brass Tom')).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /Clover.*Injured — unavailable/i })).toBeDisabled()
-    expect(screen.getByRole('button', { name: /Pebble.*On mission — unavailable/i })).toBeDisabled()
+    expect(screen.getByRole('button', { name: /Pebble.*On Mission — unavailable/i })).toBeDisabled()
   })
 
   it('adds and removes heroes, prevents duplicates, and enforces four slots', async () => {
@@ -94,9 +94,9 @@ describe('Party Builder', () => {
       http.post(`${apiUrl}/missions`, async ({ request }) => {
         requestCount += 1
         submitted = await request.json()
-        return HttpResponse.json({ data: { id: 44, status: 'assigned', quest: { id: 7, title: quest.title }, heroes: [{ id: 1, name: 'Biscuit' }], completed_at: null, created_at: '2026-01-01T00:00:00Z' } }, { status: 201 })
+        return HttpResponse.json({ data: { id: 44, status: 'assigned', quest: { id: 7, title: quest.title }, heroes: [{ id: 1, name: 'Biscuit', hero_class: 'warrior' }], completed_at: null, created_at: '2026-01-01T00:00:00Z' } }, { status: 201 })
       }),
-      http.get(`${apiUrl}/missions/44`, () => HttpResponse.json({ data: { id: 44, status: 'assigned', quest: { id: 7, title: quest.title }, heroes: [{ id: 1, name: 'Biscuit' }], completed_at: null, created_at: '2026-01-01T00:00:00Z' }, message: 'Mission retrieved successfully.' })),
+      http.get(`${apiUrl}/missions/44`, () => HttpResponse.json({ data: { id: 44, status: 'assigned', quest: { id: 7, title: quest.title }, heroes: [{ id: 1, name: 'Biscuit', hero_class: 'warrior' }], completed_at: null, created_at: '2026-01-01T00:00:00Z' }, message: 'Mission retrieved successfully.' })),
     )
     renderRoute()
 

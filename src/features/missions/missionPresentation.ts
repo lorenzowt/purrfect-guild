@@ -12,3 +12,8 @@ export function formatMissionDate(date: string | null) {
   if (!date) return 'Not completed'
   return new Intl.DateTimeFormat(undefined, { dateStyle: 'medium' }).format(new Date(date))
 }
+
+/** Turns API identifiers into player-facing labels without changing their underlying values. */
+export function formatMissionStatus(status: string) {
+  return status.split('_').map((word) => `${word.charAt(0).toUpperCase()}${word.slice(1)}`).join(' ')
+}

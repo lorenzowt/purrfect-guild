@@ -816,7 +816,7 @@ export interface paths {
         /**
          * Retrieve all accessible missions
          * @description Regular users receive only their own missions. Admins receive missions
-         *     from every user.
+         *     from every user. Results are ordered from newest to oldest.
          */
         get: {
             parameters: {
@@ -1230,6 +1230,11 @@ export interface components {
             id: number;
             /** @example Arthas */
             name: string;
+            /**
+             * @example warrior
+             * @enum {string}
+             */
+            hero_class: "cleric" | "mage" | "rogue" | "warrior";
         };
         Mission: {
             /** @example 1 */

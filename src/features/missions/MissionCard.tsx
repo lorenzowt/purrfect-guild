@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom'
-import { Badge, Card } from '../../components/ui'
+import { Badge } from '../../components/ui'
 import type { Mission } from './missionsApi'
-import { formatMissionDate, missionStatusVariant } from './missionPresentation'
+import { formatMissionDate, formatMissionStatus, missionStatusVariant } from './missionPresentation'
 
 export function MissionCard({ mission }: { mission: Mission }) {
   return (
-    <Card interactive className="mission-entry flex h-full flex-col">
+    <Link className="mission-entry flex h-full flex-col" to={`/missions/${mission.id}`} aria-label={`Open mission ${mission.id} journal entry`}>
       <div className="flex flex-wrap items-start justify-between gap-3">
         <p className="font-bold text-cocoa-plum/70">Quest</p>
-        <Badge variant={missionStatusVariant[mission.status]}>Status: {mission.status}</Badge>
+        <Badge variant={missionStatusVariant[mission.status]}>Status: {formatMissionStatus(mission.status)}</Badge>
       </div>
       <h2 className="pixel-heading mt-3 text-xs leading-6">{mission.quest?.title ?? 'Quest record unavailable'}</h2>
       <p className="mt-4 text-sm font-bold">Adventurers</p>
@@ -17,8 +17,8 @@ export function MissionCard({ mission }: { mission: Mission }) {
         <div><dt className="font-bold text-cocoa-plum/75">Created</dt><dd className="mt-1">{formatMissionDate(mission.created_at)}</dd></div>
         <div><dt className="font-bold text-cocoa-plum/75">Completed</dt><dd className="mt-1">{formatMissionDate(mission.completed_at)}</dd></div>
       </dl>
-      <Link className="mt-5 font-bold text-cocoa-plum underline" to={`/missions/${mission.id}`} aria-label={`View mission ${mission.id} details`}>Read journal entry</Link>
-    </Card>
+      {mission.status === 'assigned' && <span className="mission-entry__complete mt-5">Complete quest</span>}
+    </Link>
   )
 }
 
