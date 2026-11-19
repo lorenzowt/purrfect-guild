@@ -12,8 +12,9 @@ export function MissionJournalPage() {
   if (missionsQuery.isPending) return <section className="grid min-h-80 place-items-center"><LoadingIndicator label="Opening the mission journal…" size="lg" /></section>
   if (missionsQuery.isError || !missionsQuery.data) return <Panel className="mx-auto max-w-xl text-center"><h1 className="pixel-heading text-sm">The journal is misplaced</h1><p className="mt-4 text-cocoa-plum/80">We could not retrieve your adventures. Please try again.</p><Button className="mt-5" onClick={() => void missionsQuery.refetch()}>Try again</Button></Panel>
 
-  const { data, links, meta } = missionsQuery.data
-  const missions = [...data].sort((first, second) => new Date(second.created_at).getTime() - new Date(first.created_at).getTime())
+  // Laravel orders missions by newest creation date before paginating. Keeping the
+  // response sequence intact means pagination remains consistent with the journal.
+  const { data: missions, links, meta } = missionsQuery.data
   return (
     <section className="mission-journal mx-auto max-w-7xl" aria-labelledby="mission-journal-heading">
       <header className="mission-journal__header"><p className="font-bold text-cocoa-plum/70">A handwritten account of every brave expedition</p><h1 id="mission-journal-heading" className="pixel-heading mt-2 text-sm sm:text-xl">Mission Journal</h1></header>

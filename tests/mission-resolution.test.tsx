@@ -12,7 +12,7 @@ import { server } from './mocks/server'
 
 const apiUrl = 'http://127.0.0.1:8000/api'
 const authenticatedUser = { status: 'authenticated' as const, user: { role: 'user' as const } }
-const baseMission: Mission = { id: 1, status: 'assigned', quest: { id: 9, title: 'The Clockwork Catacombs' }, heroes: [{ id: 3, name: 'Biscuit' }], completed_at: null, created_at: '2026-01-01T00:00:00Z' }
+const baseMission: Mission = { id: 1, status: 'assigned', quest: { id: 9, title: 'The Clockwork Catacombs' }, heroes: [{ id: 3, name: 'Biscuit', hero_class: 'warrior' }], completed_at: null, created_at: '2026-01-01T00:00:00Z' }
 const beforeHero: Hero = { id: 3, name: 'Biscuit', hero_class: 'warrior', level: 3, status: 'on_mission', user_id: 1, created_at: '2026-01-01T00:00:00Z', updated_at: '2026-01-01T00:00:00Z' }
 
 function renderDetail() {

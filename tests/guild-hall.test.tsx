@@ -48,7 +48,7 @@ describe('Guild Hall', () => {
     useOverviewHandlers({
       heroes: paginated([{ id: 1, name: 'Mittens', hero_class: 'warrior', level: 2, status: 'available', user_id: 1, created_at: '2026-01-01T00:00:00Z', updated_at: '2026-01-01T00:00:00Z' }]),
       quests: paginated([{ id: 2, title: 'Mouse in the Moonlight', description: 'A tiny mystery.', difficulty: 1, boss: 'Moon Mouse', active: true, created_at: '2026-01-01T00:00:00Z', updated_at: '2026-01-01T00:00:00Z' }]),
-      missions: paginated([{ id: 3, status: 'assigned', quest: { id: 2, title: 'Mouse in the Moonlight' }, heroes: [{ id: 1, name: 'Mittens' }], completed_at: null, created_at: '2026-01-01T00:00:00Z' }]),
+      missions: paginated([{ id: 3, status: 'assigned', quest: { id: 2, title: 'Mouse in the Moonlight' }, heroes: [{ id: 1, name: 'Mittens', hero_class: 'warrior' }], completed_at: null, created_at: '2026-01-01T00:00:00Z' }]),
     })
     renderGuildHall()
 

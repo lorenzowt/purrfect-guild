@@ -12,9 +12,9 @@ import { server } from './mocks/server'
 const apiUrl = 'http://127.0.0.1:8000/api'
 const authenticatedUser = { status: 'authenticated' as const, user: { role: 'user' as const } }
 const missions: Mission[] = [
-  { id: 1, status: 'assigned', quest: { id: 11, title: 'The Moonlit Mice' }, heroes: [{ id: 1, name: 'Biscuit' }, { id: 2, name: 'Mallow' }], completed_at: null, created_at: '2026-01-01T00:00:00Z' },
-  { id: 2, status: 'success', quest: { id: 12, title: 'Lantern Marsh' }, heroes: [{ id: 3, name: 'Pebble' }], completed_at: '2026-01-02T00:00:00Z', created_at: '2026-01-01T00:00:00Z' },
-  { id: 3, status: 'failure', quest: { id: 13, title: 'Tower of Yarn' }, heroes: [{ id: 4, name: 'Clover' }], completed_at: '2026-01-03T00:00:00Z', created_at: '2026-01-01T00:00:00Z' },
+  { id: 1, status: 'assigned', quest: { id: 11, title: 'The Moonlit Mice' }, heroes: [{ id: 1, name: 'Biscuit', hero_class: 'warrior' }, { id: 2, name: 'Mallow', hero_class: 'cleric' }], completed_at: null, created_at: '2026-01-01T00:00:00Z' },
+  { id: 2, status: 'success', quest: { id: 12, title: 'Lantern Marsh' }, heroes: [{ id: 3, name: 'Pebble', hero_class: 'mage' }], completed_at: '2026-01-02T00:00:00Z', created_at: '2026-01-01T00:00:00Z' },
+  { id: 3, status: 'failure', quest: { id: 13, title: 'Tower of Yarn' }, heroes: [{ id: 4, name: 'Clover', hero_class: 'rogue' }], completed_at: '2026-01-03T00:00:00Z', created_at: '2026-01-01T00:00:00Z' },
   { id: 4, status: 'canceled', quest: { id: 14, title: 'Whisker Woods' }, heroes: [], completed_at: '2026-01-04T00:00:00Z', created_at: '2026-01-01T00:00:00Z' },
 ]
 
@@ -42,6 +42,8 @@ describe('Mission Journal', () => {
     expect(screen.getByText('The Moonlit Mice')).toBeInTheDocument()
     expect(screen.getByText(/Biscuit/)).toBeInTheDocument()
     expect(screen.getByText(/Mallow/)).toBeInTheDocument()
+    expect(screen.queryByText(/Warrior/)).not.toBeInTheDocument()
+    expect(screen.queryByText(/Cleric/)).not.toBeInTheDocument()
     expect(screen.getByText('Status: Assigned')).toBeInTheDocument()
     expect(screen.getByText('Status: Success')).toBeInTheDocument()
     expect(screen.getByText('Status: Failure')).toBeInTheDocument()
@@ -65,14 +67,14 @@ describe('Mission Journal', () => {
     expect(screen.getByRole('button', { name: 'Complete adventure' })).toBeInTheDocument()
   })
 
-  it('shows newest missions first within the API page and highlights the completion path', async () => {
+  it('preserves the API response order without client-side sorting', async () => {
     useJournalHandler(paginated([{ ...missions[0], created_at: '2026-01-01T00:00:00Z' }, { ...missions[1], created_at: '2026-02-01T00:00:00Z' }]))
     renderRoute('/missions')
 
     const entries = await screen.findAllByRole('link', { name: /Open mission .* journal entry/ })
-    expect(entries[0]).toHaveTextContent('Lantern Marsh')
-    expect(entries[1]).toHaveTextContent('The Moonlit Mice')
-    expect(entries[1]).toHaveTextContent('Complete quest')
+    expect(entries[0]).toHaveTextContent('The Moonlit Mice')
+    expect(entries[1]).toHaveTextContent('Lantern Marsh')
+    expect(entries[0]).toHaveTextContent('Complete quest')
   })
 
   it('follows mission pagination links without assuming an undocumented page parameter', async () => {
