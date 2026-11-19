@@ -542,3 +542,130 @@ I also observed that the project documentation was valuable as a reference for r
 **My main takeaway was that AI-generated designs should be treated as iterations rather than final results.** By comparing different parts of the application, identifying visual inconsistencies, and providing increasingly specific feedback, I was able to guide the AI toward a more cohesive and personalized game experience.
 
 This experience reinforced my role in evaluating the generated work and making the final creative decisions, rather than simply accepting the first implementation.
+
+## Interaction 13 — Player Profile and Guild Master's Office
+
+**Phase:** Development — Phase 8  
+**AI Model:** OpenAI Codex  
+**Purpose:** Implement player profiles and administrator management, refining the administrative experience through iterative feedback.
+
+### 1. Initial Prompts
+
+I divided Phase 8 into two independent branches:
+
+- **Phase 8A — Player Profile:** Implement player information, preferences, and tutorial replay.
+- **Phase 8B — Guild Master's Office:** Create an administrator interface for managing users, quests, heroes, and missions through the existing Laravel API.
+
+I instructed Codex to follow the established architecture, design system, and API documentation.
+
+### 2. AI-Generated Implementation
+
+Codex implemented the Player Profile and the Guild Master's Office, including administrative resource listings, detail views, and management functionality.
+
+The initial administrator interface reused much of the regular player's visual design and navigation structure.
+
+Although functional, I felt that it needed a clearer identity and better separation from the gameplay experience.
+
+### 3. My Interventions and Corrections
+
+After reviewing the implementation, I requested several changes.
+
+**Administrative visual identity**
+
+I asked Codex to give the entire Guild Master's Office a more desaturated, gray-toned appearance rather than only changing the sidebar.
+
+After reviewing the result, I requested further adjustments to reduce excessive red accents, replace platform-dependent emojis with consistent icons, and center the administrative tables.
+
+**Navigation and user roles**
+
+Initially, administrators could access both regular gameplay and administrative functionality.
+
+After evaluating this behavior, I decided that administrators should have a completely separate experience.
+
+I instructed Codex to redirect administrators directly to the Guild Master's Office after login and prevent them from accessing player-facing pages.
+
+I also identified that opening resource details from the administrative interface unexpectedly navigated to regular player pages. I requested dedicated administrative navigation that preserved the Guild Master's Office layout and allowed administrators to return to the appropriate resource listing.
+
+**Complete resource management**
+
+I noticed that administrative detail pages allowed inspection of resources but did not expose all available management actions.
+
+I instructed Codex to provide the applicable backend-authorized operations, including editing, healing, and deleting heroes belonging to other users.
+
+I emphasized reusing existing components and respecting Laravel's authorization rules rather than duplicating functionality or inventing endpoints.
+
+### 4. Outcome and Reflection
+
+Phase 8 completed the remaining major application features and established two distinct experiences: one for players and another for administrators.
+
+This phase required more substantial revisions than some earlier stages because my understanding of the ideal administrator experience evolved as I interacted with the generated application.
+
+The initial implementation helped me identify architectural and usability decisions that were difficult to evaluate through written specifications alone.
+
+I learned that developing with AI is an iterative process in which reviewing functional prototypes can reveal the need to reconsider earlier design decisions.
+
+**My main takeaway was that human oversight is essential not only for identifying bugs or visual inconsistencies, but also for making higher-level architectural and user experience decisions.**
+
+By questioning the initial implementation and refining my requirements, I was able to guide Codex toward a more coherent administrative experience that better matched the needs of Purrfect Guild.
+
+## Interaction 14 — Integration Testing and Quality Assurance
+
+**Phase:** Development — Phase 9A  
+**AI Model:** OpenAI Codex  
+**Purpose:** Verify the complete application workflow, improve automated testing, and identify integration issues before final visual refinement.
+
+### 1. Initial Prompt
+
+I asked Codex to review the complete application and verify that the independently developed features worked together.
+
+The requested testing included the full player gameplay loop, administrator navigation, authentication, API integration, and error handling.
+
+I also instructed Codex to distinguish between mocked automated tests and verification against the real Laravel backend.
+
+### 2. AI-Generated Implementation
+
+Codex implemented Playwright browser integration tests covering:
+
+- Player registration, login, and onboarding.
+- Hero recruitment, quest selection, and mission creation.
+- Mission completion and hero level updates.
+- Mission Journal navigation and logout.
+- Administrator login, navigation, and route protection.
+
+The tests use intercepted API responses to avoid modifying real development data.
+
+### 3. Problems Identified and Corrections
+
+During the testing process, Codex identified two configuration issues:
+
+- Vitest was attempting to execute Playwright test files, causing test failures.
+- Playwright reused the existing Vite development server, making automated tests dependent on the local environment.
+
+Codex corrected these issues by separating the test runners and configuring an isolated production preview for browser testing.
+
+### 4. Verification and Limitations
+
+After the changes, Codex reported:
+
+- **97 passing Vitest tests.**
+- **2 passing Playwright browser tests.**
+- Successful TypeScript checks.
+- Successful production build.
+
+Codex could not connect to the locally running Laravel API from its execution environment.
+
+Therefore, the browser tests verified frontend workflows using controlled responses, but full live backend integration and administrator mutations still require manual verification.
+
+A production bundle-size warning also remains, although no major optimization was introduced during this phase.
+
+### 5. Outcome and Reflection
+
+Phase 9A improved the reliability of the project's testing environment and provided automated coverage for the main application workflows.
+
+This phase helped me understand the difference between component tests, browser integration tests, and tests against a real backend.
+
+I also observed that testing infrastructure can contain its own problems, independently of the application code.
+
+**My main takeaway was that successful automated tests provide valuable confidence, but their limitations must be understood.** Mocked browser tests can confirm frontend behavior without guaranteeing that every interaction will work against the real Laravel API.
+
+This reinforced the importance of combining automated testing with manual verification before considering the application complete.

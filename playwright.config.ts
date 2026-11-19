@@ -4,13 +4,14 @@ export default defineConfig({
   testDir: './e2e',
   fullyParallel: true,
   use: {
-    baseURL: 'http://127.0.0.1:4173',
+    baseURL: 'http://127.0.0.1:4174',
     trace: 'on-first-retry',
   },
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
   webServer: {
-    command: 'npm run dev -- --host 127.0.0.1 --port 4173',
-    url: 'http://127.0.0.1:4173',
-    reuseExistingServer: !process.env.CI,
+    command: 'npm run build && npm run preview -- --host 127.0.0.1 --port 4174',
+    url: 'http://127.0.0.1:4174',
+    // E2E needs the source under test, not a developer's unrelated server.
+    reuseExistingServer: false,
   },
 })

@@ -7,6 +7,9 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     globals: true,
+    // Browser specs run through Playwright; keeping them out of Vitest prevents
+    // Playwright's `test()` API from being evaluated in the JSDOM runner.
+    exclude: ['e2e/**', 'node_modules/**'],
     setupFiles: './tests/setup.ts',
     css: true,
     environmentOptions: {
