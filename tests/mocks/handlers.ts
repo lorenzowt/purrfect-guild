@@ -16,4 +16,16 @@ export const handlers = [
       message: 'User retrieved successfully.',
     }),
   ),
+  http.get(`${apiUrl}/heroes`, () => HttpResponse.json(paginated([], 0, 'Heroes retrieved successfully.'))),
+  http.get(`${apiUrl}/quests`, () => HttpResponse.json(paginated([], 0, 'Quests retrieved successfully.'))),
+  http.get(`${apiUrl}/missions`, () => HttpResponse.json(paginated([], 0, 'Missions retrieved successfully.'))),
 ]
+
+function paginated<T>(data: T[], total: number, message: string) {
+  return {
+    data,
+    links: { first: null, last: null, prev: null, next: null },
+    meta: { current_page: 1, from: data.length ? 1 : null, last_page: 1, links: [], path: `${apiUrl}/`, per_page: 100, to: data.length || null, total },
+    message,
+  }
+}

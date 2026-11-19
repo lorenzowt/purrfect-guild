@@ -235,3 +235,57 @@ The first two development phases established the technical and visual foundation
 This process helped me understand the value of giving AI a clear architecture and design system before generating code. Breaking the project into smaller tasks also made the generated changes easier to review and evaluate.
 
 **The main takeaway was that well-defined specifications and incremental development make AI-generated code more manageable and consistent.**
+
+## Interaction 06 — Routing and Authentication
+
+**Phase:** Development — Phase 3  
+**AI Model:** OpenAI Codex  
+**Purpose:** Implement application routing, authentication, authorization, and the first integration layer with the Laravel API.
+
+### 1. Initial Prompts
+
+I asked Codex to implement Phase 3 in two independent Git branches:
+
+- **Phase 3A:** Configure React Router, shared layouts, and public, authenticated, and administrator route guards.
+- **Phase 3B:** Implement registration, login, logout, user profile retrieval, and Laravel Passport token handling.
+
+I instructed Codex to follow the existing architecture and OpenAPI specifications, write tests, and avoid implementing unrelated gameplay features.
+
+### 2. AI-Generated Implementation
+
+Codex implemented:
+
+- Route guards and role-based navigation.
+- Authentication screens using the established design system.
+- Typed API services based on OpenAPI schemas.
+- In-memory Passport bearer token management.
+- Axios interceptors for authorization and session errors.
+- React Context for authentication state and TanStack Query for user data.
+- Registration-to-onboarding navigation.
+- Automated authentication tests using Vitest, React Testing Library, and MSW.
+
+### 3. My Decisions and Review
+
+I separated routing and authentication into different branches so each feature could be reviewed and integrated independently.
+
+I maintained the decision to store tokens only in memory, accepting that refreshing the browser requires another login.
+
+I also specified that onboarding should trigger only after registration and successful login, while ordinary logins should enter the Guild Hall directly.
+
+### 4. Verification and Limitations
+
+Codex reported:
+
+- **19 passing tests.**
+- Successful TypeScript checks and production build.
+- No browser console errors during login screen inspection.
+
+Additional verification: I manually tested the frontend against the running Laravel API. Registration, Passport login, authenticated profile retrieval, role-based navigation, and logout worked successfully. This confirmed that the frontend and backend could communicate correctly beyond the mocked automated tests.
+
+### 5. Outcome and Reflection
+
+This phase helped me understand how React Router, Context, Axios, and TanStack Query work together to manage authentication and protected navigation.
+
+I also learned the importance of separating frontend authorization checks from backend security enforcement.
+
+A key takeaway was that **passing automated tests with mocked responses does not guarantee successful integration with a real backend**. Live API verification remains an essential next step.

@@ -31,9 +31,9 @@ describe('application routing', () => {
     expect(screen.getByRole('status')).toHaveTextContent('Opening the guild gates…')
   })
 
-  it('redirects authenticated players away from guest-only routes', () => {
+  it('redirects authenticated players away from guest-only routes', async () => {
     renderRoute('/login', { status: 'authenticated', user: { role: 'user' } })
-    expect(screen.getByRole('heading', { name: 'Guild Hall' })).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { name: 'Guild Hall' })).toBeInTheDocument()
   })
 
   it('navigates between authenticated player pages', async () => {
