@@ -2,16 +2,16 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
 import { ApplicationRoutes } from '../src/app/router/AppRouter'
-import { AuthStateProvider } from '../src/app/providers/AuthStateProvider'
+import { AppProviders } from '../src/app/providers/AppProviders'
 import type { AuthState } from '../src/app/providers/AuthStateProvider'
 
 function renderRoute(path: string, authState: AuthState = { status: 'guest' }) {
   return render(
-    <AuthStateProvider state={authState}>
+    <AppProviders authState={authState}>
       <MemoryRouter initialEntries={[path]}>
         <ApplicationRoutes />
       </MemoryRouter>
-    </AuthStateProvider>,
+    </AppProviders>,
   )
 }
 
@@ -23,7 +23,7 @@ describe('application routing', () => {
 
   it('redirects guests from protected player routes to login', () => {
     renderRoute('/heroes')
-    expect(screen.getByRole('heading', { name: 'Log in' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Welcome back, guildmaster' })).toBeInTheDocument()
   })
 
   it('shows a loading state while authentication status is being resolved', () => {

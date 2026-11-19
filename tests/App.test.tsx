@@ -1,12 +1,13 @@
 import { render, screen } from '@testing-library/react'
 import { App } from '../src/app/App'
+import { AppProviders } from '../src/app/providers/AppProviders'
 import { apiClient, clearAccessToken, setAccessToken } from '../src/lib/api/client'
 
 describe('project foundation', () => {
   afterEach(() => clearAccessToken())
 
   it('renders the public application route by default', () => {
-    render(<App />)
+    render(<AppProviders><App /></AppProviders>)
 
     expect(screen.getByRole('heading', { name: 'A Guild of Whiskers & Wonder' })).toBeInTheDocument()
   })

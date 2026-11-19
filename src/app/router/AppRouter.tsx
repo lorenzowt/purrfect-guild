@@ -2,6 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { AdminLayout, PlayerLayout, PublicLayout } from './Layouts'
 import { NotFoundPage, PlaceholderPage, WelcomePage } from './Pages'
 import { RequireAdmin, RequireAuth, RequireGuest } from './RouteGuards'
+import { LoginPage, OnboardingPlaceholderPage, RegisterPage } from '../../features/auth/AuthPages'
 
 export function AppRouter() {
   return <BrowserRouter><ApplicationRoutes /></BrowserRouter>
@@ -11,11 +12,13 @@ export function AppRouter() {
 export function ApplicationRoutes() {
   return (
     <Routes>
+      <Route element={<PublicLayout />}>
+        <Route path="/" element={<WelcomePage />} />
+      </Route>
       <Route element={<RequireGuest />}>
         <Route element={<PublicLayout />}>
-          <Route path="/" element={<WelcomePage />} />
-          <Route path="/login" element={<PlaceholderPage title="Log in" description="The login form arrives with the authentication feature." />} />
-          <Route path="/register" element={<PlaceholderPage title="Create your guild" description="Registration arrives with the authentication feature." />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
         </Route>
       </Route>
 
@@ -30,6 +33,7 @@ export function ApplicationRoutes() {
           <Route path="/missions" element={<PlaceholderPage title="Mission Journal" description="Active and past missions will appear here." />} />
           <Route path="/missions/:missionId" element={<PlaceholderPage title="Mission details" description="Mission details will appear here." />} />
           <Route path="/profile" element={<PlaceholderPage title="My Profile" description="Account settings will appear here." />} />
+          <Route path="/onboarding" element={<OnboardingPlaceholderPage />} />
         </Route>
       </Route>
 
