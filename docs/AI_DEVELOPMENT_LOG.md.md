@@ -190,3 +190,48 @@ This process helped me better understand the responsibilities of different front
 I also learned that architectural decisions involve tradeoffs between simplicity, maintainability, security, and user experience.
 
 **No application code was generated during this phase.**
+
+## Interaction 05 — Project Foundation and Design System Implementation
+
+**Phase:** Development — Phases 1 and 2  
+**AI Model:** OpenAI Codex  
+**Purpose:** Initialize the React application and implement the visual foundations of Purrfect Guild using AI-generated code.
+
+### 1. Initial Prompts
+
+I provided Codex with the project specifications, OpenAPI documentation, and `AGENTS.md`, establishing the technologies, architecture, and development guidelines.
+
+I then requested two implementation phases:
+
+- **Phase 1:** Initialize React, TypeScript, and Vite, configure the required dependencies, establish the feature-based project structure, and prepare the testing environment.
+- **Phase 2:** Implement the warm pastel design system, reusable UI components, responsive styling, typography, and a visual component showcase.
+
+### 2. AI-Generated Implementation
+
+Codex was instructed to implement the project foundation and design system according to the previously established specifications.
+
+The requested implementation included:
+
+- React project configuration and development tooling.
+- Feature-based directory organization.
+- API client foundations and OpenAPI type generation.
+- Tailwind CSS design tokens and typography.
+- Reusable buttons, cards, badges, dialogs, and form components.
+- A responsive UI showcase.
+- Initial automated tests.
+
+### 3. My Involvement
+
+I divided the implementation into separate phases rather than requesting the entire application at once.
+
+This allowed me to review the project structure and visual foundations independently before introducing gameplay or API integration.
+
+I also maintained separate Git branches and used the existing project documentation to guide the generated code.
+
+### 4. Outcome and Reflection
+
+The first two development phases established the technical and visual foundations for Purrfect Guild.
+
+This process helped me understand the value of giving AI a clear architecture and design system before generating code. Breaking the project into smaller tasks also made the generated changes easier to review and evaluate.
+
+**The main takeaway was that well-defined specifications and incremental development make AI-generated code more manageable and consistent.**

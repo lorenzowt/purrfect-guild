@@ -7,12 +7,19 @@
   --color-soft-lavender: #c8b4e8;
   --color-mint-sage: #b8dcc8;
   --color-cocoa-plum: #5b4650;
+  --color-cocoa-plum-dark: #3f3037;
+  --color-berry-red: #b95f70;
+  --font-heading: "Press Start 2P", ui-monospace, monospace;
+  --font-body: Nunito, ui-rounded, system-ui, sans-serif;
+  --radius-panel: 1rem;
+  --shadow-pixel: 4px 4px 0 var(--color-cocoa-plum);
+  --shadow-pixel-sm: 2px 2px 0 var(--color-cocoa-plum);
 }
 
 :root {
-  font-family: Nunito, ui-rounded, system-ui, sans-serif;
-  color: #5b4650;
-  background: #fff1dc;
+  font-family: var(--font-body);
+  color: var(--color-cocoa-plum);
+  background: var(--color-vanilla-cream);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 }
@@ -22,6 +29,28 @@
 body { min-width: 320px; min-height: 100vh; margin: 0; }
 
 button, input, textarea, select { font: inherit; }
+
+button, [role="button"], input, textarea, select { -webkit-tap-highlight-color: transparent; }
+
+:focus-visible {
+  outline: 3px solid var(--color-soft-lavender);
+  outline-offset: 3px;
+}
+
+.pixel-border {
+  border: 3px solid var(--color-cocoa-plum);
+  box-shadow: var(--shadow-pixel);
+}
+
+.pixel-corners { clip-path: polygon(0.5rem 0, calc(100% - 0.5rem) 0, 100% 0.5rem, 100% calc(100% - 0.5rem), calc(100% - 0.5rem) 100%, 0.5rem 100%, 0 calc(100% - 0.5rem), 0 0.5rem); }
+
+.pixel-heading {
+  font-family: var(--font-heading);
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+}
+
+.pixel-sparkle::before { content: "✦"; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
