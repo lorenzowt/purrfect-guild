@@ -27,6 +27,16 @@ export async function getMission(missionId: string) {
   return data.data
 }
 
+export async function completeMission(missionId: string) {
+  const { data } = await apiClient.post<components['schemas']['MissionResponse']>(`/missions/${missionId}/complete`)
+  return data.data
+}
+
+export async function cancelMission(missionId: string) {
+  const { data } = await apiClient.post<components['schemas']['MissionResponse']>(`/missions/${missionId}/cancel`)
+  return data.data
+}
+
 export async function createMission(input: MissionCreateInput) {
   const { data } = await apiClient.post<components['schemas']['MissionCreatedResponse']>('/missions', input)
   return data.data

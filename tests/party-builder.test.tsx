@@ -47,7 +47,7 @@ describe('Party Builder', () => {
     expect(screen.getByText('Difficulty 5/10')).toBeInTheDocument()
     expect(screen.getByText('Boss: The Brass Tom')).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /Clover.*Injured — unavailable/i })).toBeDisabled()
-    expect(screen.getByRole('button', { name: /Pebble.*On mission — unavailable/i })).toBeDisabled()
+    expect(screen.getByRole('button', { name: /Pebble.*On Mission — unavailable/i })).toBeDisabled()
   })
 
   it('adds and removes heroes, prevents duplicates, and enforces four slots', async () => {

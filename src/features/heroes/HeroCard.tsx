@@ -5,7 +5,7 @@ import { heroClassLabel, HeroPortrait } from './HeroPortrait'
 
 const statusLabels: Record<Hero['status'], string> = {
   available: 'Available',
-  on_mission: 'On mission',
+  on_mission: 'On Mission',
   injured: 'Injured',
   deactivated: 'Retired',
 }

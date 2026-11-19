@@ -42,10 +42,10 @@ describe('Mission Journal', () => {
     expect(screen.getByText('The Moonlit Mice')).toBeInTheDocument()
     expect(screen.getByText(/Biscuit/)).toBeInTheDocument()
     expect(screen.getByText(/Mallow/)).toBeInTheDocument()
-    expect(screen.getByText('Status: assigned')).toBeInTheDocument()
-    expect(screen.getByText('Status: success')).toBeInTheDocument()
-    expect(screen.getByText('Status: failure')).toBeInTheDocument()
-    expect(screen.getByText('Status: canceled')).toBeInTheDocument()
+    expect(screen.getByText('Status: Assigned')).toBeInTheDocument()
+    expect(screen.getByText('Status: Success')).toBeInTheDocument()
+    expect(screen.getByText('Status: Failure')).toBeInTheDocument()
+    expect(screen.getByText('Status: Canceled')).toBeInTheDocument()
     expect(screen.getByText('Not completed')).toBeInTheDocument()
   })
 
@@ -55,14 +55,24 @@ describe('Mission Journal', () => {
     server.use(http.get(`${apiUrl}/missions/1`, () => HttpResponse.json({ data: missions[0], message: 'Mission retrieved successfully.' })))
     renderRoute('/missions')
 
-    const entry = await screen.findByRole('link', { name: 'View mission 1 details' })
+    const entry = await screen.findByRole('link', { name: 'Open mission 1 journal entry' })
     entry.focus()
     await user.keyboard('{Enter}')
     expect(await screen.findByRole('heading', { name: 'The Moonlit Mice' })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'Assigned adventurers' })).toBeInTheDocument()
     expect(screen.getByText(/Biscuit/)).toBeInTheDocument()
-    expect(screen.getByText(/Completion and cancellation controls will arrive/i)).toBeInTheDocument()
-    expect(screen.queryByRole('button', { name: /complete|cancel/i })).not.toBeInTheDocument()
+    expect(screen.getByText(/Laravel will determine the expedition’s result/i)).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Complete adventure' })).toBeInTheDocument()
+  })
+
+  it('shows newest missions first within the API page and highlights the completion path', async () => {
+    useJournalHandler(paginated([{ ...missions[0], created_at: '2026-01-01T00:00:00Z' }, { ...missions[1], created_at: '2026-02-01T00:00:00Z' }]))
+    renderRoute('/missions')
+
+    const entries = await screen.findAllByRole('link', { name: /Open mission .* journal entry/ })
+    expect(entries[0]).toHaveTextContent('Lantern Marsh')
+    expect(entries[1]).toHaveTextContent('The Moonlit Mice')
+    expect(entries[1]).toHaveTextContent('Complete quest')
   })
 
   it('follows mission pagination links without assuming an undocumented page parameter', async () => {

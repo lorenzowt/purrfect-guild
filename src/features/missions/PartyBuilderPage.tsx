@@ -12,7 +12,7 @@ import { useMissionCreation } from './useMissionCreation'
 const partyLimit = 4
 
 function heroStatusLabel(status: Hero['status']) {
-  return { available: 'Available', on_mission: 'On mission', injured: 'Injured', deactivated: 'Retired' }[status]
+  return { available: 'Available', on_mission: 'On Mission', injured: 'Injured', deactivated: 'Retired' }[status]
 }
 
 export function PartyBuilderPage() {

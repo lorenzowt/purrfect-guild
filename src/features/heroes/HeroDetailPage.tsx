@@ -7,7 +7,7 @@ import { getHero, heroQueryKeys } from './heroesApi'
 import { HeroForm } from './HeroForm'
 import { heroErrorMessage, heroValidationErrors, useHeroMutations } from './useHeroMutations'
 
-const statusLabels = { available: 'Available', on_mission: 'On mission', injured: 'Injured', deactivated: 'Retired' } as const
+const statusLabels = { available: 'Available', on_mission: 'On Mission', injured: 'Injured', deactivated: 'Retired' } as const
 
 export function HeroDetailPage() {
   const { heroId } = useParams()
