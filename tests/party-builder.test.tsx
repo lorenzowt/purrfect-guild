@@ -96,6 +96,7 @@ describe('Party Builder', () => {
         submitted = await request.json()
         return HttpResponse.json({ data: { id: 44, status: 'assigned', quest: { id: 7, title: quest.title }, heroes: [{ id: 1, name: 'Biscuit' }], completed_at: null, created_at: '2026-01-01T00:00:00Z' } }, { status: 201 })
       }),
+      http.get(`${apiUrl}/missions/44`, () => HttpResponse.json({ data: { id: 44, status: 'assigned', quest: { id: 7, title: quest.title }, heroes: [{ id: 1, name: 'Biscuit' }], completed_at: null, created_at: '2026-01-01T00:00:00Z' }, message: 'Mission retrieved successfully.' })),
     )
     renderRoute()
 
@@ -105,7 +106,7 @@ describe('Party Builder', () => {
     expect(requestCount).toBe(1)
     expect(await screen.findByRole('status')).toHaveTextContent('Your party is on its way!')
     expect(heroRequests).toBeGreaterThanOrEqual(2)
-    expect(await screen.findByRole('heading', { name: 'Mission details' }, { timeout: 1_500 })).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { name: 'The Clockwork Catacombs' }, { timeout: 1_500 })).toBeInTheDocument()
   })
 
   it('keeps selections when Laravel rejects a mission', async () => {

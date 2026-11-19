@@ -10,6 +10,8 @@ import { HeroDetailPage } from '../../features/heroes/HeroDetailPage'
 import { HeroRosterPage } from '../../features/heroes/HeroRosterPage'
 import { QuestBoardPage } from '../../features/quests/QuestBoardPage'
 import { PartyBuilderPage } from '../../features/missions/PartyBuilderPage'
+import { MissionDetailPage } from '../../features/missions/MissionDetailPage'
+import { MissionJournalPage } from '../../features/missions/MissionJournalPage'
 
 export function AppRouter() {
   return <BrowserRouter><ApplicationRoutes /></BrowserRouter>
@@ -37,8 +39,8 @@ export function ApplicationRoutes() {
           <Route path="/quests" element={<QuestBoardPage />} />
           <Route path="/quests/:questId" element={<PlaceholderPage title="Quest details" description="Quest details will appear here." />} />
           <Route path="/quests/:questId/party" element={<PartyBuilderPage />} />
-          <Route path="/missions" element={<PlaceholderPage title="Mission Journal" description="Active and past missions will appear here." />} />
-          <Route path="/missions/:missionId" element={<PlaceholderPage title="Mission details" description="Mission details will appear here." />} />
+          <Route path="/missions" element={<MissionJournalPage />} />
+          <Route path="/missions/:missionId" element={<MissionDetailPage />} />
           <Route path="/profile" element={<ProfilePlaceholderPage />} />
           <Route path="/onboarding" element={<OnboardingPage />} />
         </Route>
