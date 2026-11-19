@@ -5,10 +5,10 @@ import { apiClient, clearAccessToken, setAccessToken } from '../src/lib/api/clie
 describe('project foundation', () => {
   afterEach(() => clearAccessToken())
 
-  it('renders the application shell', () => {
+  it('renders the public application route by default', () => {
     render(<App />)
 
-    expect(screen.getByRole('heading', { name: 'Purrfect Guild' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'A Guild of Whiskers & Wonder' })).toBeInTheDocument()
   })
 
   it('uses the configured API client with an in-memory bearer token', async () => {
