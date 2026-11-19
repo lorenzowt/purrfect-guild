@@ -396,3 +396,46 @@ I also implemented the Modal and Form interaction guidelines DESIGN_SYSTEM.md an
 **My main takeaway was that functional correctness and good user experience are not the same thing.** AI-generated code still requires human evaluation to ensure that interactions behave as intended.
 
 This also reinforced my decision to develop the application incrementally, correcting important usability problems while postponing nonessential visual refinements until the complete game is implemented.
+
+## Interaction 09 — Quest Board and Party Builder
+
+**Phase:** Development — Phase 6  
+**AI Model:** OpenAI Codex  
+**Purpose:** Implement quest exploration, party selection, and mission creation through the Laravel API.
+
+### 1. Initial Prompts
+
+I divided Phase 6 into two independent branches:
+
+- **Phase 6A — Quest Board:** Implement a quest listing, quest details, difficulty indicators, and navigation to the Party Builder.
+- **Phase 6B — Party Builder:** Allow players to select 1–4 available heroes and create missions through the Laravel API.
+
+I instructed Codex to follow the existing design system, architecture, and OpenAPI specifications, keeping gameplay calculations exclusively in the backend.
+
+### 2. AI-Generated Implementation
+
+Codex implemented the Quest Board and Party Builder, allowing players to browse quests, inspect their difficulty, assemble adventuring parties, and submit missions.
+
+The implementation followed the established application structure and integrated the new features into the existing navigation.
+
+### 3. My Intervention and Corrections
+
+After reviewing the implementation, I was satisfied with the functionality and overall appearance.
+
+However, I noticed a minor visual inconsistency in the quest difficulty card: the text was not centered as intended.
+
+I instructed Codex to adjust the card's alignment so the difficulty text appeared centered.
+
+Unlike previous phases, no significant functional corrections were necessary.
+
+### 4. Outcome and Reflection
+
+Phase 6 completed another important part of the gameplay loop, connecting quest selection, hero management, and mission creation.
+
+This interaction demonstrated how the specifications established earlier in development helped Codex generate features that closely matched my expectations, requiring only a small visual adjustment.
+
+It also reinforced the importance of reviewing both functionality and presentation, even when the implementation works correctly.
+
+**My main takeaway was that consistent project documentation and reusable components reduce the need for repeated corrections, allowing AI-assisted development to become more efficient as the project progresses.**
+
+I will continue postponing broader visual refinements until the remaining gameplay features are implemented, while correcting smaller inconsistencies when necessary.
