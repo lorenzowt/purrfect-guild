@@ -87,6 +87,10 @@ button, [role="button"], input, textarea, select { -webkit-tap-highlight-color: 
 .hero-portrait--variant-1 .hero-portrait__cat { transform: translateX(-0.12em) rotate(-4deg); }.hero-portrait--variant-2 .hero-portrait__cat { transform: translateX(0.12em) rotate(4deg); }
 .hero-portrait__cat { position: relative; z-index: 1; filter: drop-shadow(1px 2px 0 rgba(91, 70, 80, .28)); }.hero-portrait__ears { position: absolute; top: 8%; font-size: .36em; font-weight: 900; letter-spacing: -.24em; color: var(--color-cocoa-plum); }.hero-portrait__class { position: absolute; right: 7%; bottom: 6%; display: grid; place-items: center; width: 1.45em; height: 1.45em; border: 2px solid var(--color-cocoa-plum); border-radius: 999px; background: var(--color-vanilla-cream); color: var(--color-cocoa-plum); font-size: .36em; font-weight: 900; }
 .hero-detail-portrait { background: radial-gradient(circle at 50% 42%, var(--color-vanilla-cream) 0 3.5rem, transparent 3.6rem), linear-gradient(145deg, var(--color-soft-lavender), var(--color-soft-caramel)); }
+.healing-glow { animation: healing-glow .8s ease-in-out 2; }
+@keyframes healing-glow { 50% { box-shadow: 0 0 0 5px var(--color-mint-sage), 0 0 1.4rem var(--color-mint-sage); } }
+.recruitment-notice { animation: notice-fade-out 4s ease-in forwards; }
+@keyframes notice-fade-out { 0%, 72% { opacity: 1; } 100% { opacity: 0; transform: translateY(-.25rem); } }
 
 @media (max-width: 38rem) {
   .tavern-map { min-height: 46rem; }

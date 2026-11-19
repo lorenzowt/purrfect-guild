@@ -69,6 +69,7 @@ Follow `DESIGN_SYSTEM.md`.
 - Subtle hover effects.
 - Playful animations for important gameplay actions.
 - Accessible navigation and reduced-motion support.
+- Follow the modal and form interaction guidelines in `docs/DESIGN_SYSTEM.md`. Successful submissions should close their modal and show temporary feedback unless the documented workflow explicitly requires otherwise.
 
 Reuse design tokens and existing components instead of introducing inconsistent styling.
 
