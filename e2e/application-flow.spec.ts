@@ -120,7 +120,7 @@ test('an administrator remains in the Guild Master’s Office', async ({ page })
   await page.getByRole('button', { name: 'Enter the Guild Hall' }).click()
   await expect(page).toHaveURL(/\/admin$/)
   await expect(page.getByRole('heading', { name: 'Guild Master’s Office' })).toBeVisible()
-  await expect(page.getByLabel('Administrator navigation')).toBeVisible()
+  await expect(page.getByRole('navigation', { name: 'Administrator navigation', exact: true })).toBeVisible()
   await expect(page.getByLabel('Player navigation')).toHaveCount(0)
 
   // Passport tokens are deliberately memory-only; this mimics entering a player
