@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
 import { ApplicationRoutes } from '../src/app/router/AppRouter'
@@ -45,7 +45,7 @@ describe('application routing', () => {
     const user = userEvent.setup()
     renderRoute('/guild', { status: 'authenticated', user: { role: 'user' } })
 
-    await user.click(screen.getByRole('link', { name: 'Quest Board' }))
+    await user.click(within(screen.getByRole('navigation', { name: 'Player navigation' })).getByRole('link', { name: 'Quest Board' }))
     expect(await screen.findByRole('heading', { name: 'Quest Board' })).toBeInTheDocument()
   })
 

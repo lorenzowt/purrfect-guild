@@ -18,7 +18,7 @@ export function QuestBoardPage() {
 
   const { data: quests, links, meta } = questsQuery.data
   return (
-    <section className="quest-board mx-auto max-w-7xl" aria-labelledby="quest-board-heading">
+    <section className="collection-page quest-board mx-auto max-w-7xl" aria-labelledby="quest-board-heading">
       <header className="quest-board__header">
         <p className="font-bold text-vanilla-cream/85">Fresh adventures, pinned with care</p>
         <h1 id="quest-board-heading" className="pixel-heading mt-2 text-sm text-vanilla-cream sm:text-xl">Quest Board</h1>
