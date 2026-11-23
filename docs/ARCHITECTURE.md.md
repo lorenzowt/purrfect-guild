@@ -294,13 +294,14 @@ This limitation is accepted for the initial version.
 
 React Context manages:
 
-- Current access token.
-    
 - Authentication status.
-    
 - Login and logout operations.
-    
-- Session initialization.
+
+- Login and logout operations.
+
+- Post-login routing intent.
+
+The bearer token itself is held in module memory by the shared Axios client, not in Context or browser storage. Context exposes authenticated role/state to routes and layouts after `GET /users/me` confirms the session.
     
 
 TanStack Query manages the authenticated user profile.
@@ -343,7 +344,7 @@ Used for simple interactions such as:
 
 ### Complex Local State — `useReducer`
 
-Used when an interaction contains several related state transitions, such as a more complex party builder or onboarding sequence.
+Available when an interaction contains several related state transitions, such as a future more complex party builder or onboarding sequence. The current implementation primarily uses `useState`, Context, and TanStack Query rather than introducing reducers unnecessarily.
 
 ### Shared State — React Context
 
@@ -667,7 +668,7 @@ Prioritize critical user journeys:
 5. Verify protected and administrator routes.
     
 
-At least the main gameplay journey should be verified against the real Laravel API.
+Where a running Laravel API is reachable, verify at least the main gameplay journey against it. When the execution environment cannot reach the developer’s local API, report that limitation separately from controlled mocked-test results.
 
 ### TDD Approach
 
@@ -693,6 +694,13 @@ Visual styling and decorative animations may rely more heavily on manual inspect
 - Run relevant tests after modifying AI-generated code.
     
 - Document significant testing discoveries.
+
+### Current Test Layout
+
+- `tests/` contains Vitest + React Testing Library tests with MSW request handlers under `tests/mocks/`.
+- `e2e/application-flow.spec.ts` contains Playwright browser workflows with controlled HTTP responses.
+- Vite configuration excludes `e2e/**` from the JSDOM Vitest runner; Playwright starts an isolated production preview rather than depending on a developer’s existing Vite server.
+- Tests must distinguish controlled browser/API responses from manual verification against a reachable Laravel instance.
     
 
 ## 15. AI-Assisted Development Guidelines
@@ -788,6 +796,7 @@ Purrfect Guild has two separate application experiences:
 - Is redirected to the Guild Master's Office after login.
 - Cannot access regular player-facing routes.
 - Uses dedicated administrative listing and detail routes.
+- Does not access the regular Guild Hall or player-facing gameplay routes.
 - Can inspect and perform all documented administrative operations on resources belonging to any user, subject to Laravel authorization.
 - Has access to administrative management controls for users, quests, heroes, and missions where supported by the API.
 

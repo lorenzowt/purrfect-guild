@@ -65,7 +65,7 @@ This document defines the main user journeys, expected interactions, navigation,
 - **Guild Oversight:** View heroes and missions across users.
     
 
-Players use persistent navigation, with a sidebar or menu on desktop and bottom navigation on mobile.
+Player accounts use persistent player navigation, with a sidebar on desktop and bottom navigation on mobile. Administrator accounts use the Guild Master navigation only and do not enter player-facing routes.
 
 ## 3. Authentication Flow
 
@@ -84,6 +84,8 @@ Players use persistent navigation, with a sidebar or menu on desktop and bottom 
 6. Newly registered players are welcomed by the retired tavern keeper and offered the introductory tutorial.
     
 7. Returning players who log in normally enter the Guild Hall directly.
+
+8. Administrators who log in enter the Guild Master's Office directly and cannot access player gameplay routes.
     
 
 ### Important States
@@ -291,12 +293,8 @@ The Party Builder is one of the game's central interactive experiences.
 Display:
 
 - Selected heroes and their classes.
-    
-- Individual and combined hero levels.
-    
-- Class diversity.
-    
-- Quest difficulty.
+
+- Quest difficulty and the selected party composition.
     
 
 This information helps players make decisions, but the frontend must not invent a success probability or calculate the mission outcome.
@@ -335,6 +333,8 @@ Each mission displays:
 - Status.
     
 - Available actions.
+
+The journal requests eight missions per page. Laravel returns records newest-first before pagination, and the frontend preserves that documented order rather than locally sorting a partial page.
     
 
 Players can open a mission to see additional details.
@@ -467,6 +467,8 @@ Administrators can view heroes and missions belonging to different users and per
 - Laravel remains responsible for enforcing permissions.
     
 - Unauthorized requests must display appropriate feedback.
+
+Administrators are redirected to the Guild Master's Office after login. They use dedicated administrative listing/detail routes and are redirected away from the player Guild Hall, roster, Quest Board, Party Builder, Mission Journal, profile, and onboarding. Regular players do not see administrator navigation and receive an access-denied state for administrative routes.
     
 
 ## 12. Common Interface States
