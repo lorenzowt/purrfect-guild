@@ -6,7 +6,7 @@ export type PaginatedHeroes = components['schemas']['PaginatedHeroesResponse']
 export type HeroCreateInput = components['schemas']['HeroCreateRequest']
 export type HeroUpdateInput = components['schemas']['HeroUpdateRequest']
 
-const rosterPageSize = 12
+const rosterPageSize = 8
 
 export const heroQueryKeys = {
   roster: (pageUrl?: string) => ['heroes', 'roster', pageUrl ?? 'first'] as const,

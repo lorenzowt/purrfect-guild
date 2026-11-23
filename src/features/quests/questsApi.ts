@@ -4,7 +4,7 @@ import type { components } from '../../types/api.generated'
 export type Quest = components['schemas']['Quest']
 export type PaginatedQuests = components['schemas']['PaginatedQuestsResponse']
 
-const boardPageSize = 12
+const boardPageSize = 8
 
 export const questQueryKeys = {
   board: (pageUrl?: string) => ['quests', 'board', pageUrl ?? 'first'] as const,

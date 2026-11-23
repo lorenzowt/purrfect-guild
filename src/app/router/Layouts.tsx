@@ -21,8 +21,8 @@ function Brand() {
   return <NavLink to="/" className="pixel-heading text-xs text-cocoa-plum no-underline">Purrfect Guild</NavLink>
 }
 
-function Navigation({ links, label }: { links: typeof playerLinks; label: string }) {
-  return <nav aria-label={label} className="flex gap-2 overflow-x-auto py-2 md:flex-col md:overflow-visible">
+function Navigation({ links, label, className = '' }: { links: typeof playerLinks; label: string; className?: string }) {
+  return <nav aria-label={label} className={`flex gap-2 py-2 ${className}`}>
     {links.map((link) => <NavLink key={link.to} to={link.to} className={({ isActive }) => `whitespace-nowrap rounded-lg px-3 py-2 font-bold no-underline transition-colors motion-reduce:transition-none ${isActive ? 'bg-dusty-pink text-cocoa-plum-dark' : 'text-cocoa-plum hover:bg-soft-caramel/50'}`}>{link.label}</NavLink>)}
   </nav>
 }
@@ -37,9 +37,16 @@ export function PublicLayout() {
 }
 
 export function PlayerLayout() {
-  return <div className="min-h-screen bg-vanilla-cream md:grid md:grid-cols-[15rem_1fr]"><aside className="border-b-2 border-soft-caramel bg-soft-caramel/35 px-5 py-4 md:border-r-2 md:border-b-0 md:px-6 md:py-8"><Brand /><Navigation label="Player navigation" links={playerLinks} /><div className="mt-3"><LogoutAction /></div></aside><main className="min-w-0 px-5 py-8 pb-24 sm:px-8 md:pb-8"><Outlet /></main></div>
+  return <div className="app-shell min-h-screen bg-vanilla-cream md:grid md:grid-cols-[15rem_1fr]"><aside className="desktop-sidebar hidden md:block"><Brand /><Navigation label="Player navigation" links={playerLinks} className="flex-col" /><div className="mt-3"><LogoutAction /></div></aside><main className="min-w-0 px-5 py-8 pb-24 sm:px-8 md:pb-8"><Outlet /></main><MobileNavigation links={playerLinks} label="Player navigation" /></div>
 }
 
 export function AdminLayout() {
-  return <div className="admin-theme min-h-screen bg-vanilla-cream md:grid md:grid-cols-[15rem_1fr]"><aside className="border-b-2 border-soft-lavender bg-soft-lavender/35 px-5 py-4 md:border-r-2 md:border-b-0 md:px-6 md:py-8"><Brand /><p className="mt-4 text-sm font-bold text-cocoa-plum/80">Guild Master’s Office</p><Navigation label="Administrator navigation" links={adminLinks} /><div className="mt-3"><LogoutAction /></div></aside><main className="min-w-0 px-5 py-8 sm:px-8"><Outlet /></main></div>
+  return <div className="admin-theme app-shell min-h-screen bg-vanilla-cream md:grid md:grid-cols-[15rem_1fr]"><aside className="desktop-sidebar hidden md:block"><Brand /><p className="mt-4 text-sm font-bold text-cocoa-plum/80">Guild Master’s Office</p><Navigation label="Administrator navigation" links={adminLinks} className="flex-col" /><div className="mt-3"><LogoutAction /></div></aside><main className="min-w-0 px-5 py-8 pb-24 sm:px-8 md:pb-8"><Outlet /></main><MobileNavigation links={adminLinks} label="Administrator navigation" /></div>
 }
+
+function MobileNavigation({ links, label }: { links: typeof playerLinks; label: string }) {
+  return <nav className="mobile-navigation md:hidden" aria-label={`${label} mobile`}><div>{links.map((link) => <NavLink key={link.to} to={link.to}><MobileIcon destination={link.to} /><span>{mobileLabel(link.label)}</span></NavLink>)}</div></nav>
+}
+
+function mobileLabel(label: string) { return { 'Guild Hall': 'Guild', Adventurers: 'Heroes', 'Quest Board': 'Quests', Journal: 'Journal', Profile: 'Profile', 'Guild Office': 'Office', Users: 'Users', Quests: 'Quests', Heroes: 'Heroes', Missions: 'Missions' }[label] ?? label }
+function MobileIcon({ destination }: { destination: string }) { const glyph = destination === '/guild' || destination === '/admin' ? '⌂' : destination.includes('heroes') ? '♙' : destination.includes('quests') ? '▤' : destination.includes('missions') ? '☷' : destination.includes('profile') ? '◉' : '•'; return <span className="mobile-navigation__icon" aria-hidden="true">{glyph}</span> }

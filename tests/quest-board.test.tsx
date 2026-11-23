@@ -83,7 +83,7 @@ describe('Quest Board', () => {
     renderRoute('/quests')
 
     expect(await screen.findByText('The Moonlit Mice')).toBeInTheDocument()
-    expect(firstRequestUrl).toContain('per_page=12')
+    expect(firstRequestUrl).toContain('per_page=8')
     expect(new URL(firstRequestUrl).searchParams.has('page')).toBe(false)
     await user.click(screen.getByRole('button', { name: 'Next' }))
     expect(await screen.findByText('Lantern Marsh')).toBeInTheDocument()

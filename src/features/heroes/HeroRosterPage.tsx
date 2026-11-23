@@ -33,16 +33,16 @@ export function HeroRosterPage() {
   }
 
   return (
-    <section className="mx-auto max-w-7xl" aria-labelledby="hero-roster-heading">
+    <section className="hero-roster mx-auto max-w-7xl" aria-labelledby="hero-roster-heading">
       <HeroRecruitmentDialog open={recruitmentOpen} onClose={() => setRecruitmentOpen(false)} onRecruit={announceRecruitment} />
       <header className="flex flex-wrap items-end justify-between gap-4">
         <div><p className="font-bold text-cocoa-plum/70">Meet the brave whiskers of your guild</p><h1 id="hero-roster-heading" className="pixel-heading mt-2 text-base sm:text-xl">Adventurers’ Corner</h1></div>
         <div className="flex items-center gap-3"><Button size="sm" onClick={() => setRecruitmentOpen(true)}>Recruit adventurer</Button>{typeof meta.total === 'number' && <p className="rounded-full bg-soft-caramel/45 px-3 py-1 text-sm font-bold">{meta.total} {meta.total === 1 ? 'adventurer' : 'adventurers'}</p>}</div>
       </header>
       {recruitmentNotice && <RecruitmentNotice message={recruitmentNotice} />}
-      <div className="mt-7 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="hero-roster__cabinet mt-7"><div className="hero-roster__grid">
         {heroes.map((hero) => <HeroCard key={hero.id} hero={hero} />)}
-      </div>
+      </div></div>
       <nav className="mt-8 flex flex-wrap items-center justify-between gap-4" aria-label="Hero roster pages">
         <p className="text-sm font-bold text-cocoa-plum/75">Page {meta.current_page ?? 1}{meta.last_page ? ` of ${meta.last_page}` : ''}</p>
         <div className="flex gap-3">

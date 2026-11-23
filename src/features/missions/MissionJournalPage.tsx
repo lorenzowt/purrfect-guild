@@ -16,12 +16,14 @@ export function MissionJournalPage() {
   // response sequence intact means pagination remains consistent with the journal.
   const { data: missions, links, meta } = missionsQuery.data
   return (
-    <section className="mission-journal mx-auto max-w-7xl" aria-labelledby="mission-journal-heading">
+    <div className="mission-journal-page">
+    <section className="collection-page mission-journal mx-auto" aria-labelledby="mission-journal-heading">
       <header className="mission-journal__header"><p className="font-bold text-cocoa-plum/70">A handwritten account of every brave expedition</p><h1 id="mission-journal-heading" className="pixel-heading mt-2 text-sm sm:text-xl">Mission Journal</h1></header>
       <span className="mission-journal__decoration mission-journal__decoration--paw" aria-hidden="true" />
       <span className="mission-journal__decoration mission-journal__decoration--fish" aria-hidden="true" />
       {missions.length === 0 ? <div className="mt-7"><EmptyState title="No adventures recorded" description="Choose a quest and send a party out to begin your guild’s first journal entry." action={<Link className="font-bold text-cocoa-plum underline" to="/quests">Visit the Quest Board</Link>} /></div> : <div className="mt-7 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">{missions.map((mission) => <MissionCard key={mission.id} mission={mission} />)}</div>}
       {missions.length > 0 && <nav className="mt-8 flex flex-wrap items-center justify-between gap-4" aria-label="Mission journal pages"><p className="text-sm font-bold">Page {meta.current_page ?? 1}{meta.last_page ? ` of ${meta.last_page}` : ''}</p><div className="flex gap-3"><Button variant="secondary" disabled={!links.prev} onClick={() => setPageUrl(links.prev ?? undefined)}>Previous</Button><Button disabled={!links.next} onClick={() => setPageUrl(links.next ?? undefined)}>Next</Button></div></nav>}
     </section>
+    </div>
   )
 }

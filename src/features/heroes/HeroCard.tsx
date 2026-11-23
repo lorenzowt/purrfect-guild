@@ -13,9 +13,9 @@ const statusLabels: Record<Hero['status'], string> = {
 export function HeroCard({ hero }: { hero: Hero }) {
   return (
     <Card interactive className="flex h-full flex-col bg-vanilla-cream p-4">
-      <div className="flex items-start justify-between gap-3">
+      <div className="flex items-start justify-between gap-2">
         <HeroPortrait hero={hero} />
-        <Badge variant={hero.status}>{statusLabels[hero.status]}</Badge>
+        <Badge variant={hero.status} className="max-w-[7rem] shrink text-center leading-tight">{statusLabels[hero.status]}</Badge>
       </div>
       <div className="mt-4 flex-1">
         <h2 className="text-lg font-extrabold">{hero.name}</h2>

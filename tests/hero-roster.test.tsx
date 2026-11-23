@@ -79,7 +79,7 @@ describe('Hero Roster', () => {
     renderRoute('/heroes')
 
     expect(await screen.findByText('Biscuit')).toBeInTheDocument()
-    expect(firstRequestUrl).toContain('per_page=12')
+    expect(firstRequestUrl).toContain('per_page=8')
     expect(new URL(firstRequestUrl).searchParams.has('page')).toBe(false)
     await user.click(screen.getByRole('button', { name: 'Next' }))
     expect(await screen.findByText('Pebble')).toBeInTheDocument()
