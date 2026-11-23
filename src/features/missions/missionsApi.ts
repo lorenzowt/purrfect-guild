@@ -6,7 +6,7 @@ export type MissionCreateInput = components['schemas']['MissionCreateRequest']
 
 export type PaginatedMissions = components['schemas']['PaginatedMissionsResponse']
 
-const journalPageSize = 12
+const journalPageSize = 8
 
 export const missionQueryKeys = {
   journal: (pageUrl?: string) => ['missions', 'journal', pageUrl ?? 'first'] as const,

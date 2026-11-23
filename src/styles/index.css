@@ -52,15 +52,25 @@ button, [role="button"], input, textarea, select { -webkit-tap-highlight-color: 
 
 .pixel-sparkle::before { content: "✦"; }
 
+/* Shared responsive composition for the three collectible-style collections. */
+.app-shell { min-height: 100dvh; }
+.desktop-sidebar { position: sticky; top: 0; height: 100dvh; overflow-y: auto; border-right: 3px solid var(--color-cocoa-plum); background: repeating-linear-gradient(0deg, transparent 0 2rem, color-mix(in srgb, var(--color-soft-caramel) 30%, transparent) 2.05rem 2.12rem), linear-gradient(145deg, color-mix(in srgb, var(--color-soft-caramel) 52%, var(--color-vanilla-cream)), var(--color-vanilla-cream)); padding: 2rem 1.5rem; box-shadow: inset -3px 0 0 color-mix(in srgb, var(--color-cocoa-plum) 30%, transparent); }.desktop-sidebar > a:first-child { display: block; margin-bottom: 1.5rem; padding-bottom: 1.25rem; border-bottom: 2px dashed color-mix(in srgb, var(--color-cocoa-plum) 55%, transparent); }
+.desktop-sidebar nav a { border: 2px solid transparent; transition: transform 150ms ease, background-color 150ms ease, border-color 150ms ease; }.desktop-sidebar nav a:hover { transform: translateX(.2rem); border-color: var(--color-cocoa-plum); background: color-mix(in srgb, var(--color-soft-caramel) 48%, var(--color-vanilla-cream)); }.desktop-sidebar nav a[aria-current="page"] { border-color: var(--color-cocoa-plum); background: var(--color-dusty-pink); box-shadow: var(--shadow-pixel-sm); }
+.mobile-navigation { position: fixed; z-index: 20; right: 0; bottom: 0; left: 0; display: flex; min-height: 4.5rem; align-items: stretch; border-top: 3px solid var(--color-cocoa-plum); background: color-mix(in srgb, var(--color-vanilla-cream) 94%, var(--color-soft-caramel)); box-shadow: 0 -3px 0 color-mix(in srgb, var(--color-cocoa-plum) 18%, transparent); padding: .3rem max(.5rem, env(safe-area-inset-right)) calc(.3rem + env(safe-area-inset-bottom)) max(.5rem, env(safe-area-inset-left)); }.mobile-navigation > div { display: grid; flex: 1; grid-template-columns: repeat(5, minmax(0, 1fr)); }.mobile-navigation a { display: grid; min-width: 0; min-height: 3.5rem; place-items: center; align-content: center; gap: .12rem; border-radius: .55rem; padding: .2rem; color: var(--color-cocoa-plum); font-size: .68rem; font-weight: 800; text-align: center; text-decoration: none; }.mobile-navigation__icon { font-size: 1rem; line-height: 1; }.mobile-navigation a[aria-current="page"] { background: color-mix(in srgb, var(--color-dusty-pink) 60%, transparent); outline: 1px solid var(--color-cocoa-plum); }
+.collection-page { width: min(100%, 88rem); min-height: calc(100dvh - 10rem); margin-block: auto; display: flex; flex-direction: column; justify-content: center; }.hero-roster { width: min(100%, 88rem); min-height: calc(100dvh - 10rem); margin-block: auto; display: flex; flex-direction: column; justify-content: center; }
+.quest-board__notices, .hero-roster__grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); }
+.hero-roster__cabinet { position: relative; border: 3px solid var(--color-cocoa-plum); border-radius: var(--radius-panel); background: repeating-linear-gradient(90deg, transparent 0 3rem, color-mix(in srgb, var(--color-cocoa-plum) 18%, transparent) 3.05rem 3.22rem), linear-gradient(145deg, #b97b55, var(--color-soft-caramel) 48%, #a8664c); padding: clamp(1.5rem, 3vw, 2.5rem); box-shadow: var(--shadow-pixel), inset 0 0 0 .45rem color-mix(in srgb, var(--color-vanilla-cream) 36%, transparent); }.hero-roster__cabinet::before { position: absolute; inset: .85rem; border: 2px solid color-mix(in srgb, var(--color-vanilla-cream) 70%, var(--color-soft-caramel)); border-radius: .65rem; content: ""; pointer-events: none; }.hero-roster__grid { position: relative; display: grid; gap: clamp(1.25rem, 2vw, 2rem); }.hero-roster__grid > * { min-width: 0; min-height: 18rem; background: color-mix(in srgb, var(--color-vanilla-cream) 94%, var(--color-soft-caramel)); }
+
 .tavern-map {
   position: relative;
   min-height: 31rem;
   isolation: isolate;
-  background: linear-gradient(180deg, var(--color-soft-lavender) 0%, #e9d7c7 46%, var(--color-soft-caramel) 46%, #d29467 100%);
+  background: radial-gradient(ellipse at 50% 28%, color-mix(in srgb, var(--color-vanilla-cream) 72%, #ffc96e) 0 12%, transparent 40%), linear-gradient(180deg, #946d70 0%, #d9a284 46%, var(--color-soft-caramel) 46%, #9f603f 100%);
 }
 
 .tavern-map__sky { position: absolute; inset: 0 0 54%; background: radial-gradient(circle at 20% 35%, #fff8e9 0 0.35rem, transparent 0.4rem), radial-gradient(circle at 74% 20%, #fff8e9 0 0.25rem, transparent 0.3rem); opacity: .8; }
-.tavern-map__floor { position: absolute; inset: 46% 0 0; background: repeating-linear-gradient(0deg, transparent 0 2.5rem, rgba(91,70,80,.16) 2.55rem 2.7rem), repeating-linear-gradient(90deg, transparent 0 4rem, rgba(91,70,80,.12) 4.05rem 4.2rem); z-index: -1; }
+.tavern-map__floor { position: absolute; inset: 46% 0 0; background: repeating-linear-gradient(0deg, transparent 0 2.5rem, rgba(63,48,55,.28) 2.55rem 2.7rem), repeating-linear-gradient(90deg, transparent 0 4rem, rgba(63,48,55,.24) 4.05rem 4.2rem); z-index: -1; }
+.tavern-map::before { position: absolute; inset: 0 0 auto; height: 4.5rem; border-bottom: 4px solid color-mix(in srgb, var(--color-cocoa-plum) 64%, transparent); background: repeating-linear-gradient(90deg, #6f4740 0 4rem, #855544 4rem 8rem); content: ""; opacity: .88; }
 .tavern-map__sign { position: absolute; top: 1.5rem; left: 50%; width: min(78%, 24rem); transform: translateX(-50%); border: 3px solid var(--color-cocoa-plum); border-radius: .75rem; background: var(--color-vanilla-cream); padding: .7rem 1rem; text-align: center; box-shadow: var(--shadow-pixel-sm); }
 .tavern-map__sign p { margin: .35rem 0 0; font-size: .75rem; font-weight: 700; }
 .tavern-location { position: absolute; z-index: 1; display: grid; min-width: 8.5rem; max-width: 10.5rem; gap: .15rem; border: 3px solid var(--color-cocoa-plum); border-radius: .8rem; background: var(--color-vanilla-cream); padding: .65rem; color: var(--color-cocoa-plum); text-decoration: none; box-shadow: var(--shadow-pixel-sm); transition: transform 150ms ease, box-shadow 150ms ease, background-color 150ms ease; }
@@ -122,6 +132,50 @@ button, [role="button"], input, textarea, select { -webkit-tap-highlight-color: 
   .tavern-location--heroes { top: 20%; }.tavern-location--quests { top: 38%; right: auto; }.tavern-location--missions { top: 56%; bottom: auto; }.tavern-location--keeper { top: 74%; right: auto; bottom: auto; }
   .party-slots { grid-template-columns: 1fr; }
 }
+@media (min-width: 48rem) { .mobile-navigation { display: none !important; }.quest-board, .mission-journal { padding: clamp(1.25rem, 2vw, 2rem); }.quest-board__notices, .hero-roster__grid, .mission-journal .mt-7.grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }.quest-notice { min-height: 19rem; padding: 1.4rem; }.mission-entry { min-height: 18rem; padding: 1.4rem; } }
+@media (min-width: 64rem) { .quest-board__notices, .hero-roster__grid, .mission-journal .mt-7.grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 80rem) { .quest-board__notices, .hero-roster__grid, .mission-journal .mt-7.grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+/* Quest and journal pages are centered by their outer layout; their decorated
+   surfaces must retain content-driven height rather than inheriting it. */
+.quest-board.collection-page, .mission-journal.collection-page { min-height: 0; height: auto; display: block; padding: 1.25rem clamp(1.75rem, 4vw, 3.25rem); }
+.quest-notice { min-height: 19rem; aspect-ratio: auto; padding: clamp(1.5rem, 2vw, 1.9rem); }
+.mission-entry { min-height: 0; aspect-ratio: auto; padding: clamp(1.5rem, 2vw, 1.9rem); }
+@media (min-width: 48rem) { .quest-board__notices, .mission-journal .mt-7.grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1.25rem, 2vw, 2rem); } }
+@media (min-width: 70rem) { .quest-board__notices, .mission-journal .mt-7.grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 100rem) { .quest-board__notices, .mission-journal .mt-7.grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+/* The page wrapper positions the journal; the journal remains content-sized. */
+.mission-journal-page { display: flex; min-height: calc(100dvh - 8rem); align-items: center; justify-content: center; padding-block: clamp(1.5rem, 4vh, 4rem); }
+.mission-journal-page .mission-journal { width: 100%; max-width: none; margin: 0; padding: clamp(1.75rem, 3vw, 2.75rem) clamp(2rem, 5vw, 4rem); }
+.mission-journal-page .mission-journal .mt-7.grid { gap: clamp(1.5rem, 2.5vw, 2.25rem); }
+.mission-journal-page .mission-entry { min-height: 0; height: max-content; aspect-ratio: auto; padding: clamp(1.75rem, 2.7vw, 2.25rem); }
+.mission-journal-page .mission-entry, .mission-journal-page .mission-entry > * { min-width: 0; }
+.mission-entry__summary { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: .65rem; }
+.mission-entry__title { flex: 1 1 7rem; margin: 0; }
+.mission-entry .mission-hero-name { gap: .25rem; padding: .12rem .42rem .12rem .12rem; font-size: .72rem; }
+.mission-entry .mission-hero-name .hero-portrait { width: 1.25rem; height: 1.25rem; }
+.mission-entry__dates { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; margin-top: 1rem; color: color-mix(in srgb, var(--color-cocoa-plum) 82%, transparent); font-size: .72rem; line-height: 1.25; }
+.mission-entry__dates dt { font-weight: 800; }
+.mission-entry__dates dd { margin: .15rem 0 0; overflow-wrap: anywhere; }
+.mission-entry .mission-entry__complete { align-self: flex-start; margin-top: 1rem; }
+@media (min-width: 56rem) { .mission-journal-page .mission-journal .mt-7.grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 70rem) { .mission-journal-page .mission-journal .mt-7.grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 90rem) {
+  .mission-journal-page .mission-journal {
+    width: fit-content;
+    max-width: 100%;
+  }
+
+  .mission-journal-page .mission-journal .mt-7.grid { justify-content: center; }
+}
+@media (min-width: 90rem) and (max-width: 95.99rem) { .mission-journal-page .mission-journal .mt-7.grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 96rem) { .mission-journal-page .mission-journal .mt-7.grid { grid-template-columns: repeat(4, minmax(0, 15rem)); } }
+@media (min-width: 48rem) and (max-width: 55.99rem) { .mission-journal-page .mission-journal .mt-7.grid { grid-template-columns: 1fr; } }
+/* Card content retains its natural height so small screens never conceal
+   titles, hero chips, dates, status badges, or the action. */
+.mission-journal-page .mission-entry { min-width: 0; overflow: visible; }
+@media (max-width: 47.99rem) { .mission-journal-page .mission-entry { aspect-ratio: auto; } }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }

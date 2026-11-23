@@ -45,10 +45,10 @@ describe('Mission Journal', () => {
     expect(screen.getByRole('img', { name: 'Biscuit, Warrior portrait' })).toBeInTheDocument()
     expect(screen.queryByText(/Warrior/)).not.toBeInTheDocument()
     expect(screen.queryByText(/Cleric/)).not.toBeInTheDocument()
-    expect(screen.getByText('Status: Assigned')).toBeInTheDocument()
-    expect(screen.getByText('Status: Success')).toBeInTheDocument()
-    expect(screen.getByText('Status: Failure')).toBeInTheDocument()
-    expect(screen.getByText('Status: Canceled')).toBeInTheDocument()
+    expect(screen.getByLabelText('Mission status: Assigned')).toBeInTheDocument()
+    expect(screen.getByLabelText('Mission status: Success')).toBeInTheDocument()
+    expect(screen.getByLabelText('Mission status: Failure')).toBeInTheDocument()
+    expect(screen.getByLabelText('Mission status: Canceled')).toBeInTheDocument()
     expect(screen.getByText('Not completed')).toBeInTheDocument()
   })
 
@@ -91,7 +91,7 @@ describe('Mission Journal', () => {
     renderRoute('/missions')
 
     expect(await screen.findByText('The Moonlit Mice')).toBeInTheDocument()
-    expect(firstRequestUrl).toContain('per_page=12')
+    expect(firstRequestUrl).toContain('per_page=8')
     expect(new URL(firstRequestUrl).searchParams.has('page')).toBe(false)
     await user.click(screen.getByRole('button', { name: 'Next' }))
     expect(await screen.findByText('Lantern Marsh')).toBeInTheDocument()
