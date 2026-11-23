@@ -497,3 +497,11 @@ The administrative interface uses the same cozy fantasy pixel-art design languag
 - Maintain responsive layouts and accessible keyboard interactions.
 
 Administrative detail pages should feel like part of the Guild Master's Office, not like regular player pages.
+
+## 12. Final Implementation Notes
+
+- Hero portraits are rendered from local class-organized assets. Their visual selection is deterministic from the documented hero ID and class, while portrait alternative text identifies the hero and class for assistive technology.
+- Player desktop navigation uses a persistent sidebar; player mobile navigation uses a bottom bar with labels and decorative icons. Administrative navigation follows the same responsive pattern but remains in its own layout.
+- Mission Journal records use cat-themed decorations and content-led mission cards. Responsive grid columns reduce before content is clipped; the decorative journal panel is not used to conceal overflowing mission information.
+- Success notifications are temporary and dialogs close only after backend confirmation. Errors keep forms/dialogs available for correction.
+- The administrative palette remains muted and desaturated; stronger red is reserved for destructive actions, errors, and important warnings.

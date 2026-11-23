@@ -344,3 +344,16 @@ The project will be considered successful when the following objectives are met:
     
 
 These documents will guide implementation and may evolve as the project progresses.
+
+## 11. Final Implementation Alignment
+
+The final frontend preserves the original cozy resource-management goal while making several implementation decisions explicit:
+
+- Player (`user`) and administrator (`admin`) accounts use separate experiences. Players access the Guild Hall and gameplay; administrators enter the Guild Master's Office and are redirected away from player-facing routes.
+- Hero portraits are local static assets selected deterministically from hero ID and class, so the same hero retains a consistent appearance without a backend portrait field.
+- Hero, quest, and mission collections request eight records per page where the documented API supports `per_page`; pagination links remain server-provided.
+- Laravel orders Mission Journal records newest-first before pagination. The frontend preserves that response order and does not sort incomplete pages locally.
+- Desktop layouts use a persistent sidebar and mobile layouts use touch-friendly bottom navigation. Administrative layouts remain visually and navigationally separate.
+- Dialogs close only after confirmed successful submissions and surface temporary feedback outside the dialog. Validation/server failures preserve the user’s current context.
+
+The application intentionally does not add undocumented gameplay systems, probability calculations, or backend endpoints.
