@@ -8,7 +8,7 @@ export interface OnboardingStep {
 export const onboardingSteps: OnboardingStep[] = [
   {
     title: 'A warm welcome',
-    dialogue: 'Ah, the new guildmaster! I am Bramble, former keeper of this tavern. The keys are yours now — do try not to lose them under the rug.',
+    dialogue: 'Ah, the new guildmaster! I am Freeona, former keeper of this tavern. The keys are yours now — do try not to lose them under the rug.',
     highlight: 'The Purring Hearth',
   },
   {

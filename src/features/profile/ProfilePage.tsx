@@ -73,7 +73,7 @@ export function ProfilePage() {
         </Panel>
         <div className="grid gap-6">
           <Panel><h2 className="pixel-heading text-xs">Guild preferences</h2><div className="mt-5 grid gap-4"><PreferenceToggle id="sound-effects" label="Optional sound effects" description="Allow future guild sound effects when they are available." checked={soundEffects} onChange={setSoundEffects} /><PreferenceToggle id="reduced-motion" label="Reduce motion" description="Minimize interface animations in addition to your operating system preference." checked={reduceMotion} onChange={setReduceMotion} /></div></Panel>
-          <Panel><h2 className="pixel-heading text-xs">Need a refresher?</h2><p className="mt-4 text-cocoa-plum/80">Bramble is always happy to show you around again.</p><Link to="/onboarding" className="profile-replay-link mt-5">Replay Bramble’s welcome tour</Link></Panel>
+          <Panel><h2 className="pixel-heading text-xs">Need a refresher?</h2><p className="mt-4 text-cocoa-plum/80">Freeona is always happy to show you around again.</p><Link to="/onboarding" className="profile-replay-link mt-5">Replay Freeona’s welcome tour</Link></Panel>
           <Panel><h2 className="pixel-heading text-xs">Leave the guild hall</h2><p className="mt-4 text-cocoa-plum/80">This signs you out on this device and asks Laravel to revoke the current token.</p><div className="mt-5"><LogoutAction /></div></Panel>
         </div>
       </div>

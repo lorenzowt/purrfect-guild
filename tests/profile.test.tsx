@@ -114,7 +114,7 @@ describe('Player Profile', () => {
     renderRoute()
 
     await screen.findByRole('heading', { name: 'Mittens' })
-    await user.click(screen.getByRole('link', { name: 'Replay Bramble’s welcome tour' }))
+    await user.click(screen.getByRole('link', { name: 'Replay Freeona’s welcome tour' }))
     expect(await screen.findByRole('heading', { name: 'A warm welcome' })).toBeInTheDocument()
 
     const profilePage = renderRoute()
