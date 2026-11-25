@@ -21,7 +21,6 @@ export function TavernMap() {
       <div className="tavern-map__sky" aria-hidden="true" />
       <div className="tavern-map__sign">
         <h2 id="tavern-map-heading" className="pixel-heading text-[0.65rem] sm:text-xs">The Purring Hearth</h2>
-        <p>Temporary CSS tavern illustration</p>
       </div>
       <p className="sr-only">Choose a location in the temporary illustrated Guild Hall.</p>
       <div className="tavern-map__floor" aria-hidden="true" />

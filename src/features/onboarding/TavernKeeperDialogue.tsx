@@ -2,6 +2,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { Link } from 'react-router-dom'
 import { Badge, Button, Panel } from '../../components/ui'
 import type { OnboardingStep } from './onboardingSteps'
+import freeonaPortrait from '../../assets/portraits/freeona.jpg'
 
 interface TavernKeeperDialogueProps {
   step: OnboardingStep
@@ -19,13 +20,13 @@ export function TavernKeeperDialogue({ step, currentStep, totalSteps, onBack, on
   return (
     <Panel className="overflow-hidden p-0">
       <div className="grid md:grid-cols-[12rem_1fr]">
-        <div className="keeper-portrait grid min-h-48 place-items-center border-b-2 border-soft-caramel p-6 text-center md:border-r-2 md:border-b-0" aria-hidden="true">
-          <span className="text-7xl">🐈</span>
-          <span className="pixel-heading mt-3 text-[0.55rem]">Bramble</span>
+        <div className="keeper-portrait grid min-h-48 place-items-center border-b-2 border-soft-caramel p-6 text-center md:border-r-2 md:border-b-0">
+          <img src={freeonaPortrait} alt="Freeona, the retired tavern keeper" className="h-auto w-full max-w-40 object-contain" />
+          <span className="pixel-heading mt-3 text-[0.55rem]">Freeona</span>
         </div>
         <div className="p-5 sm:p-7">
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <Badge variant="magic">Bramble, retired keeper</Badge>
+            <Badge variant="magic">Freeona, retired keeper</Badge>
             <p className="text-sm font-bold text-cocoa-plum/70">Step {currentStep + 1} of {totalSteps}</p>
           </div>
           <div className="mt-5 min-h-44" aria-live="polite">

@@ -20,6 +20,8 @@ describe('player onboarding', () => {
     renderRoute('/onboarding')
 
     expect(screen.getByRole('heading', { name: 'A warm welcome' })).toBeInTheDocument()
+    expect(screen.getByRole('img', { name: 'Freeona, the retired tavern keeper' })).toBeInTheDocument()
+    expect(screen.getByText('Freeona, retired keeper')).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Back' })).toBeDisabled()
     await user.click(screen.getByRole('button', { name: 'Next' }))
     expect(await screen.findByRole('heading', { name: 'Adventurers’ Corner' })).toBeInTheDocument()
@@ -59,7 +61,7 @@ describe('player onboarding', () => {
     guild.unmount()
     renderRoute('/profile')
     await screen.findByRole('heading', { name: 'My Profile' })
-    await user.click(screen.getByRole('link', { name: 'Replay Bramble’s welcome tour' }))
+    await user.click(screen.getByRole('link', { name: 'Replay Freeona’s welcome tour' }))
     expect(await screen.findByRole('heading', { name: 'A warm welcome' })).toBeInTheDocument()
   })
 })

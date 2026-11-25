@@ -54,7 +54,8 @@ describe('Guild Hall', () => {
 
     expect(await screen.findByRole('heading', { name: 'Guild Overview' })).toBeInTheDocument()
     expect(screen.getByText('Welcome back, Test Guildmaster')).toBeInTheDocument()
-    expect(screen.getByText('Temporary CSS tavern illustration')).toBeInTheDocument()
+    expect(screen.queryByText('Temporary CSS tavern illustration')).not.toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'The Purring Hearth' })).toBeInTheDocument()
     expect(screen.getAllByText('1', { selector: 'p' })).toHaveLength(4)
     expect(screen.getByText('ready for adventure')).toBeInTheDocument()
     expect(screen.getByText('currently underway')).toBeInTheDocument()
