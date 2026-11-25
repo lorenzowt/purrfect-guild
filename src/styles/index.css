@@ -85,10 +85,6 @@ button, [role="button"], input, textarea, select { -webkit-tap-highlight-color: 
 .tavern-map__sparkle { position: absolute; z-index: 0; color: var(--color-vanilla-cream); font-size: 1.8rem; text-shadow: 1px 1px 0 var(--color-cocoa-plum); }
 .tavern-map__sparkle--one { top: 21%; left: 38%; }.tavern-map__sparkle--two { right: 38%; bottom: 21%; }
 
-.keeper-portrait {
-  background: radial-gradient(circle at 50% 34%, var(--color-vanilla-cream) 0 2.1rem, transparent 2.2rem), linear-gradient(145deg, var(--color-soft-lavender), var(--color-mint-sage));
-}
-
 .hero-portrait { position: relative; display: grid; place-items: center; flex: none; overflow: hidden; border: 3px solid var(--color-cocoa-plum); border-radius: .85rem; background: var(--color-soft-caramel); box-shadow: var(--shadow-pixel-sm); image-rendering: pixelated; object-fit: cover; }
 .hero-portrait--warrior { background: linear-gradient(145deg, #d9d4ce, var(--color-soft-caramel)); }
 .hero-portrait--mage { background: linear-gradient(145deg, var(--color-soft-lavender), #eee6f8); }

@@ -20,9 +20,8 @@ export function TavernKeeperDialogue({ step, currentStep, totalSteps, onBack, on
   return (
     <Panel className="overflow-hidden p-0">
       <div className="grid md:grid-cols-[12rem_1fr]">
-        <div className="keeper-portrait grid min-h-48 place-items-center border-b-2 border-soft-caramel p-6 text-center md:border-r-2 md:border-b-0">
-          <img src={freeonaPortrait} alt="Freeona, the retired tavern keeper" className="h-auto w-full max-w-40 object-contain" />
-          <span className="pixel-heading mt-3 text-[0.55rem]">Freeona</span>
+        <div className="keeper-portrait grid min-h-48 place-items-center border-b-2 border-soft-caramel md:border-r-2 md:border-b-0">
+          <img src={freeonaPortrait} alt="Freeona, the retired tavern keeper" className="h-auto w-full object-contain" />
         </div>
         <div className="p-5 sm:p-7">
           <div className="flex flex-wrap items-center justify-between gap-3">
